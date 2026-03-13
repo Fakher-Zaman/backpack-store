@@ -9,12 +9,12 @@ export default function BlogSection() {
           Recent Blog Posts
         </h2>
         <div className="grid gap-6 grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
+          {blogPosts.map(post => (
             <BlogCard key={post.id} post={post} />
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <button className="rounded-full border-2 border-red-400 px-8 py-2.5 text-sm font-medium text-red-400 transition-colors hover:bg-red-400 hover:text-white">
+          <button className="rounded-md border-2 border-brand-green-dark px-8 py-2.5 text-sm font-medium text-brand-green-dark transition-colors hover:bg-brand-green-dark hover:text-white">
             Read all
           </button>
         </div>

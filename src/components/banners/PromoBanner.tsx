@@ -7,7 +7,7 @@ export default function PromoBanner() {
             <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
               Save 20% or more
               <br />
-              on Eergy Drinks
+              on Energy Drinks
             </h2>
             <p className="mt-4 max-w-md text-sm text-gray-600">
               Unlock Savings. Get 20% or More Off Your
@@ -21,6 +21,7 @@ export default function PromoBanner() {
             <img
               src="https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=500&h=350&fit=crop"
               alt="Promotional backpack"
+              loading="lazy"
               className="w-full max-w-md rounded-2xl object-cover"
             />
           </div>

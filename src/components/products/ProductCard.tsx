@@ -1,6 +1,14 @@
 import type { Product } from '@/types';
 import StarRating from '../ui/StarRating';
 
+const COLOR_NAMES: Record<string, string> = {
+  '#2C2C2C': 'Charcoal',
+  '#5C4033': 'Brown',
+  '#1A3A25': 'Forest Green',
+  '#4A5568': 'Slate Gray',
+  '#E8DFD0': 'Cream',
+};
+
 interface ProductCardProps {
   product: Product;
 }
@@ -12,16 +20,19 @@ export default function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.image}
           alt={product.name}
-          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
         />
       </div>
       <h3 className="text-sm font-semibold">{product.name}</h3>
       {/* Color dots */}
       {product.colors && (
-        <div className="mt-1 flex items-center gap-1.5">
+        <div className="mt-1 flex items-center gap-1.5" role="list" aria-label="Available colors">
           {product.colors.map((color, i) => (
             <span
               key={i}
+              role="listitem"
+              aria-label={COLOR_NAMES[color] ?? color}
               className="h-2.5 w-2.5 rounded-full border border-gray-200"
               style={{ backgroundColor: color }}
             />

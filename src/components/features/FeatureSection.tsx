@@ -28,6 +28,7 @@ export default function FeatureSection() {
           <img
             src="https://picsum.photos/seed/feature-model/600/700"
             alt="Model wearing Piccollo backpack"
+            loading="lazy"
             className="w-full rounded-2xl object-cover"
           />
         </div>

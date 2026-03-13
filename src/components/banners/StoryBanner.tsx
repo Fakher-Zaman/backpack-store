@@ -21,6 +21,7 @@ export default function StoryBanner() {
             <img
               src="https://images.unsplash.com/photo-1509762774605-f07235a08f1f?w=600&h=400&fit=crop"
               alt="Backpack comfort details"
+              loading="lazy"
               className="w-full rounded-2xl object-cover"
             />
           </div>

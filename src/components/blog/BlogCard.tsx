@@ -11,13 +11,14 @@ export default function BlogCard({ post }: BlogCardProps) {
         <img
           src={post.image}
           alt={post.title}
-          className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
         />
       </div>
       <h3 className="text-sm font-semibold">{post.title}</h3>
       <p className="mt-1 text-xs leading-relaxed text-gray-500 line-clamp-2">{post.excerpt}</p>
       <p className="mt-2 text-[10px] text-gray-400">
-        {post.author} · {post.date}
+        {post.author} &middot; {post.date}
       </p>
     </article>
   );
