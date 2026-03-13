@@ -1,129 +1,124 @@
 ---
-allowed-tools: Read, Write, Edit, Bash
-argument-hint: [feature-name] | [feature-type] [name]
-description: Scaffold new feature with boilerplate code, tests, and documentation
+allowed-tools: Read, Write, Edit, Bash(git *), Bash(npm *), Bash(find *), Bash(ls *)
+argument-hint: [feature-name] e.g. wishlist | product-filter | cart-discount
+description: Scaffold a new feature for the backpack-store app with components, services, tests, and types
 ---
 
-# Create Feature
+# Create Feature — Backpack Store
 
-Scaffold new feature: $ARGUMENTS
+Scaffolding new feature: **$ARGUMENTS**
 
-## Current Project Context
+---
 
-- Project structure: !`find . -maxdepth 2 -type d -name src -o -name components -o -name features | head -5`
-- Current branch: !`git branch --show-current`
-- Package info: @package.json or @Cargo.toml or @requirements.txt (if exists)
-- Architecture docs: @docs/architecture.md or @README.md (if exists)
+## 📍 Project Snapshot
 
-## Task
+- Project layout: !`find src -maxdepth 2 -type d | head -20`
+- Active branch: !`git branch --show-current`
+- Existing features: !`ls src/features 2>/dev/null || ls src/components 2>/dev/null | head -10`
+- Dependencies: @package.json
 
-Follow this systematic approach to create a new feature: $ARGUMENTS
+---
 
-1. **Feature Planning**
-   - Define the feature requirements and acceptance criteria
-   - Break down the feature into smaller, manageable tasks
-   - Identify affected components and potential impact areas
-   - Plan the API/interface design before implementation
+## 🚀 Scaffold Steps
 
-2. **Research and Analysis**
-   - Study existing codebase patterns and conventions
-   - Identify similar features for consistency
-   - Research external dependencies or libraries needed
-   - Review any relevant documentation or specifications
+### 1 — Create Feature Branch
+```bash
+git checkout -b feature/$ARGUMENTS
+```
 
-3. **Architecture Design**
-   - Design the feature architecture and data flow
-   - Plan database schema changes if needed
-   - Define API endpoints and contracts
-   - Consider scalability and performance implications
+### 2 — Create Folder Structure
+Create the following inside `src/features/$ARGUMENTS/`:
 
-4. **Environment Setup**
-   - Create a new feature branch: `git checkout -b feature/$ARGUMENTS`
-   - Ensure development environment is up to date
-   - Install any new dependencies required
-   - Set up feature flags if applicable
+```
+src/features/$ARGUMENTS/
+├── components/
+│   ├── $ARGUMENTS.tsx          ← Main feature component
+│   └── $ARGUMENTS.test.tsx     ← Component tests
+├── hooks/
+│   └── use-$ARGUMENTS.ts       ← Feature-specific hook
+├── services/
+│   └── $ARGUMENTS-service.ts   ← API calls / business logic
+├── types/
+│   └── $ARGUMENTS.types.ts     ← TypeScript types & interfaces
+└── index.ts                    ← Public barrel export
+```
 
-5. **Implementation Strategy**
-   - Start with core functionality and build incrementally
-   - Follow the project's coding standards and patterns
-   - Implement proper error handling and validation
-   - Use dependency injection and maintain loose coupling
+### 3 — Types First (always define the shape before building)
+In `types/$ARGUMENTS.types.ts`, define:
+- Main entity type (e.g. `Backpack`, `CartItem`, `WishlistItem`)
+- API request/response types
+- Component prop types
 
-6. **Database Changes (if applicable)**
-   - Create migration scripts for schema changes
-   - Ensure backward compatibility
-   - Plan for rollback scenarios
-   - Test migrations on sample data
+### 4 — Service Layer
+In `services/$ARGUMENTS-service.ts`:
+- All API calls using `fetch` (no axios on server)
+- Validate inputs with **Zod** before any DB/API write
+- Return typed responses — no `any`
 
-7. **API Development**
-   - Implement API endpoints with proper HTTP status codes
-   - Add request/response validation
-   - Implement proper authentication and authorization
-   - Document API contracts and examples
+### 5 — Custom Hook
+In `hooks/use-$ARGUMENTS.ts`:
+- Wrap service calls with **React Query** (`useQuery` / `useMutation`)
+- Handle loading, error, and success states
+- Export only what the component needs
 
-8. **Frontend Implementation (if applicable)**
-   - Create reusable components following project patterns
-   - Implement responsive design and accessibility
-   - Add proper state management
-   - Handle loading and error states
+### 6 — Component
+In `components/$ARGUMENTS.tsx`:
+- Server Component by default — add `"use client"` only if needed
+- Use Tailwind utilities only — no custom CSS
+- Handle empty, loading, and error UI states explicitly
 
-9. **Testing Implementation**
-   - Write unit tests for core business logic
-   - Create integration tests for API endpoints
-   - Add end-to-end tests for user workflows
-   - Test error scenarios and edge cases
+### 7 — Tests
+In `components/$ARGUMENTS.test.tsx`:
+- Test user-visible behavior with **React Testing Library**
+- Cover: renders correctly, handles empty state, handles error state
+- At least one test per user interaction
 
-10. **Security Considerations**
-    - Implement proper input validation and sanitization
-    - Add authorization checks for sensitive operations
-    - Review for common security vulnerabilities
-    - Ensure data protection and privacy compliance
+### 8 — Barrel Export
+In `index.ts`:
+```ts
+export { default as $ARGUMENTS } from './components/$ARGUMENTS';
+export * from './types/$ARGUMENTS.types';
+export { use$ARGUMENTS } from './hooks/use-$ARGUMENTS';
+```
 
-11. **Performance Optimization**
-    - Optimize database queries and indexes
-    - Implement caching where appropriate
-    - Monitor memory usage and optimize algorithms
-    - Consider lazy loading and pagination
+### 9 — Wire Into the App
+- Import the feature in the relevant page under `src/app/`
+- Add route in `app/` if this feature needs its own page
+- Register any new API routes under `app/api/$ARGUMENTS/`
 
-12. **Documentation**
-    - Add inline code documentation and comments
-    - Update API documentation
-    - Create user documentation if needed
-    - Update project README if applicable
+### 10 — Commit
+```bash
+git add .
+git commit -m "feat($ARGUMENTS): scaffold $ARGUMENTS feature with components, service, hook, and tests"
+git push origin feature/$ARGUMENTS
+```
 
-13. **Code Review Preparation**
-    - Run all tests and ensure they pass
-    - Run linting and formatting tools
-    - Check for code coverage and quality metrics
-    - Perform self-review of the changes
+---
 
-14. **Integration Testing**
-    - Test feature integration with existing functionality
-    - Verify feature flags work correctly
-    - Test deployment and rollback procedures
-    - Validate monitoring and logging
+## ✅ Done Checklist
 
-15. **Commit and Push**
-    - Create atomic commits with descriptive messages
-    - Follow conventional commit format if project uses it
-    - Push feature branch: `git push origin feature/$ARGUMENTS`
+- [ ] Branch created: `feature/$ARGUMENTS`
+- [ ] Types defined before implementation
+- [ ] Service layer uses Zod validation
+- [ ] Hook wraps service with React Query
+- [ ] Component defaults to Server Component
+- [ ] At least 3 tests written
+- [ ] Barrel export in `index.ts`
+- [ ] Wired into a page or route
+- [ ] `npm run typecheck` passes
+- [ ] `npm run lint` passes
+- [ ] `npm run test` passes
+- [ ] Committed with conventional commit message
 
-16. **Pull Request Creation**
-    - Create PR with comprehensive description
-    - Include screenshots or demos if applicable
-    - Add appropriate labels and reviewers
-    - Link to any related issues or specifications
+---
 
-17. **Quality Assurance**
-    - Coordinate with QA team for testing
-    - Address any bugs or issues found
-    - Verify accessibility and usability requirements
-    - Test on different environments and browsers
+## 🛍️ Backpack Store Feature Examples
 
-18. **Deployment Planning**
-    - Plan feature rollout strategy
-    - Set up monitoring and alerting
-    - Prepare rollback procedures
-    - Schedule deployment and communication
-
-Remember to maintain code quality, follow project conventions, and prioritize user experience throughout the development process.
+| Command | What It Builds |
+|---|---|
+| `/create-feature wishlist` | Save/remove backpacks to a wishlist |
+| `/create-feature product-filter` | Filter by brand, size, color, price |
+| `/create-feature cart-discount` | Apply coupon codes at checkout |
+| `/create-feature product-review` | Star ratings and review submission |
+| `/create-feature size-guide` | Modal with backpack size chart |
+| `/create-feature order-tracking` | Post-purchase order status page |

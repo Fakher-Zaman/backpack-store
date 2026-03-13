@@ -1,5 +1,6 @@
 import type { Product } from '@/types';
 import StarRating from '../ui/StarRating';
+import WishlistButton from '../ui/WishlistButton';
 
 const COLOR_NAMES: Record<string, string> = {
   '#2C2C2C': 'Charcoal',
@@ -16,13 +17,16 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group">
-      <div className="mb-3 overflow-hidden rounded-xl bg-gray-100">
+      <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100">
         <img
           src={product.image}
           alt={product.name}
           loading="lazy"
           className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
         />
+        <div className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+          <WishlistButton productId={product.id} />
+        </div>
       </div>
       <h3 className="text-sm font-semibold">{product.name}</h3>
       {/* Color dots */}
