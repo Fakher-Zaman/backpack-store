@@ -1,0 +1,54 @@
+import type { Product } from '@/types';
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: 'Classic Canvas Backpack',
+    price: 79,
+    originalPrice: 99,
+    image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500&h=500&fit=crop',
+    rating: 4.5,
+    colors: ['#2C2C2C', '#5C4033', '#1A3A25'],
+  },
+  {
+    id: 2,
+    name: 'Urban Explorer Pack',
+    price: 89,
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
+    rating: 4,
+    colors: ['#2C2C2C', '#4A5568'],
+  },
+  {
+    id: 3,
+    name: 'Mountain Trail Backpack',
+    price: 120,
+    originalPrice: 149,
+    image: 'https://images.unsplash.com/photo-1509762774605-f07235a08f1f?w=500&h=500&fit=crop',
+    rating: 5,
+    colors: ['#1A3A25', '#2C2C2C'],
+  },
+  {
+    id: 4,
+    name: 'Minimalist Day Pack',
+    price: 59,
+    image: 'https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=500&h=500&fit=crop',
+    rating: 4,
+    colors: ['#E8DFD0', '#2C2C2C', '#5C4033'],
+  },
+  {
+    id: 5,
+    name: 'Vintage Leather Backpack',
+    price: 149,
+    originalPrice: 189,
+    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop',
+    rating: 4.5,
+  },
+  {
+    id: 6,
+    name: 'Waterproof Adventure Pack',
+    price: 109,
+    image: 'https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=500&h=500&fit=crop',
+    rating: 4.5,
+    colors: ['#2C2C2C', '#1A3A25'],
+  },
+];
