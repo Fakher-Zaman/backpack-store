@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useCart } from '@/hooks/useCart';
+import { useAuth } from '@/hooks/useAuth';
 import { useQuickSearch } from '@/hooks/useQuickSearch';
 import { products } from '@/data/products';
 import WishlistDrawer from '@/components/wishlist/WishlistDrawer';
 import CartDrawer from '@/components/cart/CartDrawer';
 import QuickSearch from '@/components/ui/QuickSearch';
+import LoginModal from '@/components/auth/LoginModal';
+import UserMenu from '@/components/auth/UserMenu';
+import Dashboard from '@/components/auth/Dashboard';
 
 const navLinks = [
   { label: 'STORE', href: '#collections' },
@@ -19,8 +23,11 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [dashboardOpen, setDashboardOpen] = useState(false);
   const { count } = useWishlist();
   const { itemCount } = useCart();
+  const { isAuthenticated } = useAuth();
   const {
     query, setQuery, results,
     isOpen: searchOpen, open: openSearch, close: closeSearch,
@@ -126,14 +133,19 @@ export default function Navbar() {
               )}
             </button>
 
-            <button
-              className="hidden rounded-full border border-white/30 px-5 py-2
-                text-xs font-medium text-white transition-colors
-                hover:bg-white hover:text-brand-green-dark focus:outline-none
-                focus:ring-2 focus:ring-brand-cream md:block"
-            >
-              LOG IN
-            </button>
+            {isAuthenticated ? (
+              <UserMenu onDashboard={() => setDashboardOpen(true)} />
+            ) : (
+              <button
+                onClick={() => setLoginModalOpen(true)}
+                className="hidden rounded-full border border-white/30 px-5 py-2
+                  text-xs font-medium text-white transition-colors
+                  hover:bg-white hover:text-brand-green-dark focus:outline-none
+                  focus:ring-2 focus:ring-brand-cream md:block"
+              >
+                LOG IN
+              </button>
+            )}
 
             <button
               className="text-white md:hidden"
@@ -189,6 +201,8 @@ export default function Navbar() {
 
       <WishlistDrawer open={wishlistOpen} onClose={() => setWishlistOpen(false)} />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      <LoginModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
+      <Dashboard isOpen={dashboardOpen} onClose={() => setDashboardOpen(false)} />
     </>
   );
 }
