@@ -6,7 +6,7 @@
 
 ## General Formatting Principles
 
-- Indentation: **2 spaces** for JS/TS/JSON/YAML — **4 spaces** for Python
+- Indentation: **2 spaces** for JS/TS/JSON/YAML
 - Max line length: **100 characters** (soft), **120 characters** (hard limit)
 - End-of-file: Always include a **single trailing newline**
 - Line endings: **LF only** (`\n`) — never CRLF

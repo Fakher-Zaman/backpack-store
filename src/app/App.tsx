@@ -1,4 +1,5 @@
 import { WishlistProvider } from '@/hooks/useWishlist';
+import { CartProvider } from '@/hooks/useCart';
 import { ReviewsProvider } from '@/hooks/useReviews';
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/hero/HeroSection';
@@ -13,6 +14,7 @@ import Footer from '@/components/layout/Footer';
 export default function App() {
   return (
     <WishlistProvider>
+    <CartProvider>
     <ReviewsProvider>
       <a
         href="#main-content"
@@ -32,6 +34,7 @@ export default function App() {
       </main>
       <Footer />
     </ReviewsProvider>
+    </CartProvider>
     </WishlistProvider>
   );
 }

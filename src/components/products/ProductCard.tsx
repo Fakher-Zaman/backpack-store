@@ -3,6 +3,7 @@ import type { Product } from '@/types';
 import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
 import WishlistButton from '../ui/WishlistButton';
+import AddToCartButton from '../cart/AddToCartButton';
 import ReviewModal from '../ui/ReviewModal';
 import ProductReviewSection from './ProductReviewSection';
 
@@ -68,6 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
           <span className="text-sm font-bold">${product.price}</span>
         </div>
+        <AddToCartButton productId={product.id} />
       </article>
       <ReviewModal
         isOpen={showReviews}

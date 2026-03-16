@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useWishlist } from '@/hooks/useWishlist';
+import { useCart } from '@/hooks/useCart';
 import WishlistDrawer from '@/components/wishlist/WishlistDrawer';
+import CartDrawer from '@/components/cart/CartDrawer';
 
 const navLinks = [
   { label: 'STORE', href: '#store' },
@@ -13,7 +15,9 @@ const navLinks = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const { count } = useWishlist();
+  const { itemCount } = useCart();
 
   return (
     <>
@@ -37,6 +41,22 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
+            {/* Cart icon */}
+            <button
+              onClick={() => setCartOpen(true)}
+              aria-label={`Cart (${itemCount} items)`}
+              className="relative text-white transition-colors hover:text-brand-cream"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {itemCount > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+
             {/* Wishlist icon */}
             <button
               onClick={() => setWishlistOpen(true)}
@@ -94,6 +114,7 @@ export default function Navbar() {
       </nav>
 
       <WishlistDrawer open={wishlistOpen} onClose={() => setWishlistOpen(false)} />
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );
 }
