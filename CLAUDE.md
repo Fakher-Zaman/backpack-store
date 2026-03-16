@@ -2,54 +2,31 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
-
-Piccollo — a single-page premium backpack store built with React 18, TypeScript, Vite, and Tailwind CSS 3.
-
 ## Commands
 
-- `npm run dev` — Start Vite dev server
-- `npm run build` — Type-check with `tsc -b` then build with Vite
-- `npm run lint` — ESLint
-- `npm run preview` — Preview production build
+```bash
+npm run dev          # Start Vite dev server
+npm run build        # TypeScript check + Vite build
+npm run lint         # ESLint
+npm run test         # Vitest (single run)
+npm run test:watch   # Vitest (watch mode)
+npm run test:coverage # Vitest with v8 coverage
+npx vitest run src/__tests__/unit/useCart.test.tsx  # Run a single test file
+```
 
 ## Architecture
 
-Single-page app with no routing. `src/app/App.tsx` composes all sections in order: Navbar → Hero → LatestCollection → Features → ProductGrid → StoryBanner → Blog → PromoBanner → Footer.
+React 18 + TypeScript + Vite + Tailwind CSS single-page backpack store app. No router — `App.tsx` renders all sections as a single scrollable page.
 
-The app is wrapped in `<WishlistProvider>` for global wishlist state.
+### Provider Stack (in App.tsx)
 
-### Path alias
+`AuthProvider` → `WishlistProvider` → `CartProvider` → `ReviewsProvider` — all implemented as React Context in `src/hooks/`. State is persisted to localStorage with `piccollo-` prefixed keys.
 
-`@/*` maps to `src/*` (configured in both `tsconfig.json` and `vite.config.ts`).
+### Key Patterns
 
-### Key directories
-
-- `src/components/` — UI organized by feature: `banners/`, `blog/`, `collections/`, `hero/`, `layout/`, `products/`, `features/`, `ui/`, `wishlist/`
-- `src/data/` — Static data arrays (`products.ts`, `collections.ts`, `blogs.ts`) with typed exports
-- `src/hooks/` — Custom React hooks (`useWishlist.tsx` — Context provider + hook with localStorage persistence)
-- `src/types/index.ts` — Shared TypeScript interfaces (`Product`, `Collection`, `BlogPost`)
-- `src/styles/index.css` — Tailwind entry point + `prefers-reduced-motion` global rule
-
-### State management
-
-No external state library. Wishlist uses React Context (`src/hooks/useWishlist.tsx`) with localStorage persistence. The `WishlistProvider` wraps the app in `App.tsx`. Access state via `useWishlist()` hook which returns `{ items, toggle, isInWishlist, count }`.
-
-### Styling
-
-Tailwind CSS with custom theme in `tailwind.config.js`:
-- Brand colors: `brand-green`, `brand-green-dark`, `brand-green-light`, `brand-cream`, `brand-sand`, `brand-charcoal`
-- Fonts: `font-sans` (Roboto), `font-display` (Poppins) — loaded via Google Fonts in `index.html`
-- Use `motion-reduce:transition-none` on animated elements for accessibility
-
-### Images
-
-All images use Unsplash URLs with sizing params (e.g., `?w=600&h=400&fit=crop`). No local image assets. Below-fold images use `loading="lazy"`.
-
-### Accessibility
-
-- Skip-to-content link in `App.tsx`
-- All decorative SVGs have `aria-hidden="true"`
-- Interactive elements have `aria-label` attributes
-- Color swatches include text-based color names for screen readers
-- `prefers-reduced-motion` respected globally in `index.css`
+- **Path alias**: `@/` maps to `src/` (configured in both tsconfig.json and vite.config.ts)
+- **Data layer**: Static product/blog/collection data lives in `src/data/`. No real API — `src/lib/auth.ts` and `src/lib/payment.ts` are mock services.
+- **Axios**: Singleton instance in `src/lib/axios.ts` — always import from there, never create new instances.
+- **Tests**: Vitest + jsdom + React Testing Library. Setup file at `src/__tests__/setup.ts`. Unit tests in `src/__tests__/unit/`, component tests in `src/__tests__/components/`.
+- **Types**: Shared types in `src/types/` (Zod schemas + inferred types). Component-local types stay co-located.
+- **No `any`**: Use `unknown` with type guards. Strict mode enabled.
