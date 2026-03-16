@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useCart } from '@/hooks/useCart';
+import { useQuickSearch } from '@/hooks/useQuickSearch';
+import { products } from '@/data/products';
 import WishlistDrawer from '@/components/wishlist/WishlistDrawer';
 import CartDrawer from '@/components/cart/CartDrawer';
+import QuickSearch from '@/components/ui/QuickSearch';
 
 const navLinks = [
   { label: 'STORE', href: '#store' },
@@ -18,6 +21,7 @@ export default function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
   const { count } = useWishlist();
   const { itemCount } = useCart();
+  const { query, setQuery, results, isOpen: searchOpen, open: openSearch, close: closeSearch } = useQuickSearch(products);
 
   return (
     <>
@@ -41,6 +45,16 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
+            {/* Search */}
+            <QuickSearch
+              isOpen={searchOpen}
+              onOpen={openSearch}
+              onClose={closeSearch}
+              query={query}
+              onQueryChange={setQuery}
+              results={results}
+            />
+
             {/* Cart icon */}
             <button
               onClick={() => setCartOpen(true)}
