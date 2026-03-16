@@ -2,6 +2,7 @@ import { products } from '@/data/products';
 import { useProductFilter } from '@/hooks/useProductFilter';
 import ProductCard from './ProductCard';
 import ProductFilter from './ProductFilter';
+import SizeGuide from './SizeGuide';
 
 export default function ProductGrid() {
   const {
@@ -24,9 +25,12 @@ export default function ProductGrid() {
             <br />
             Available
           </h2>
-          <p className="max-w-xs text-xs text-gray-400">
-            We produce provided only 3000 units worldwide
-          </p>
+          <div className="flex flex-col items-start gap-2">
+            <p className="max-w-xs text-xs text-gray-400">
+              We produce provided only 3000 units worldwide
+            </p>
+            <SizeGuide />
+          </div>
         </div>
         <ProductFilter
           filters={filters}
