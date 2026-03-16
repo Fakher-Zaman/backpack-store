@@ -12,7 +12,8 @@ export default function BlogCard({ post }: BlogCardProps) {
           src={post.image}
           alt={post.title}
           loading="lazy"
-          className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+          className="h-44 w-full object-cover transition-transform duration-500
+            group-hover:scale-105 motion-reduce:transition-none"
         />
       </div>
       <h3 className="text-sm font-semibold">{post.title}</h3>

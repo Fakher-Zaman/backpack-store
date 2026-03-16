@@ -1,6 +1,6 @@
 export default function PromoBanner() {
   return (
-    <section className="bg-brand-cream py-16">
+    <section id="campaigns" className="bg-brand-cream py-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div>
@@ -13,7 +13,11 @@ export default function PromoBanner() {
               Unlock Savings. Get 20% or More Off Your
               Favorite Energy Drinks.
             </p>
-            <button className="mt-6 rounded-md bg-brand-green-dark px-6 py-3 text-xs font-medium text-white transition-colors hover:bg-brand-green">
+            <button
+              className="mt-6 rounded-md bg-brand-green-dark px-6 py-3
+                text-xs font-medium text-white transition-colors
+                hover:bg-brand-green"
+            >
               Shop Now
             </button>
           </div>

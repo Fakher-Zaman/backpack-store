@@ -15,10 +15,14 @@ export default function WishlistButton({ productId }: WishlistButtonProps) {
         toggle(productId);
       }}
       aria-label={active ? 'Remove from wishlist' : 'Add to wishlist'}
-      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-brand-charcoal shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
+      className="flex h-8 w-8 items-center justify-center rounded-full
+        bg-white/80 text-brand-charcoal shadow-sm backdrop-blur-sm
+        transition-colors hover:bg-white"
     >
       <svg
-        className={`h-4 w-4 transition-colors ${active ? 'fill-red-500 text-red-500' : 'fill-none text-brand-charcoal'}`}
+        className={`h-4 w-4 transition-colors ${
+          active ? 'fill-red-500 text-red-500' : 'fill-none text-brand-charcoal'
+        }`}
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth={2}

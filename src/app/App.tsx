@@ -18,7 +18,11 @@ export default function App() {
     <ReviewsProvider>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-green-dark focus:px-4 focus:py-2 focus:text-white"
+        className={[
+          'sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4',
+          'focus:z-[100] focus:rounded-md focus:bg-brand-green-dark',
+          'focus:px-4 focus:py-2 focus:text-white',
+        ].join(' ')}
       >
         Skip to main content
       </a>

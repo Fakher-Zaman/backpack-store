@@ -51,7 +51,9 @@ export default function ProductFilter({
             id="filter-category"
             value={filters.category}
             onChange={e => onFilterChange('category', e.target.value)}
-            className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
+            className="w-full rounded-lg border border-gray-200 bg-white
+              px-3 py-2 text-sm focus:border-brand-green
+              focus:outline-none focus:ring-1 focus:ring-brand-green"
           >
             <option value="">All</option>
             {categories.map(c => (
@@ -116,7 +118,9 @@ export default function ProductFilter({
               onFilterChange('maxPrice', val >= priceRange.max ? Infinity : val);
             }}
             className="w-full accent-brand-green"
-            aria-label={`Maximum price: $${filters.maxPrice === Infinity ? priceRange.max : filters.maxPrice}`}
+            aria-label={`Maximum price: $${
+              filters.maxPrice === Infinity ? priceRange.max : filters.maxPrice
+            }`}
           />
           <div className="flex justify-between text-xs text-gray-400">
             <span>${priceRange.min}</span>
@@ -129,7 +133,9 @@ export default function ProductFilter({
           {hasActiveFilters && (
             <button
               onClick={onReset}
-              className="rounded-lg border border-gray-200 px-3 py-2 text-xs font-medium text-gray-600 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600"
+              className="rounded-lg border border-gray-200 px-3 py-2
+                text-xs font-medium text-gray-600 transition-colors
+                hover:border-red-200 hover:bg-red-50 hover:text-red-600"
             >
               Clear filters
             </button>

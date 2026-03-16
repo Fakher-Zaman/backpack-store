@@ -14,7 +14,11 @@ export default function BlogSection() {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <button className="rounded-md border-2 border-brand-green-dark px-8 py-2.5 text-sm font-medium text-brand-green-dark transition-colors hover:bg-brand-green-dark hover:text-white">
+          <button
+            className="rounded-md border-2 border-brand-green-dark px-8 py-2.5
+              text-sm font-medium text-brand-green-dark transition-colors
+              hover:bg-brand-green-dark hover:text-white"
+          >
             Read all
           </button>
         </div>

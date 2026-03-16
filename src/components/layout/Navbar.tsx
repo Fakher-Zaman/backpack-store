@@ -8,11 +8,11 @@ import CartDrawer from '@/components/cart/CartDrawer';
 import QuickSearch from '@/components/ui/QuickSearch';
 
 const navLinks = [
-  { label: 'STORE', href: '#store' },
+  { label: 'STORE', href: '#collections' },
   { label: 'ABOUT', href: '#about' },
   { label: 'PRODUCTS', href: '#products' },
   { label: 'CAMPAIGNS', href: '#campaigns' },
-  { label: 'GALLERY', href: '#gallery' },
+  { label: 'BLOG', href: '#blog' },
 ];
 
 export default function Navbar() {
@@ -21,7 +21,10 @@ export default function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
   const { count } = useWishlist();
   const { itemCount } = useCart();
-  const { query, setQuery, results, isOpen: searchOpen, open: openSearch, close: closeSearch } = useQuickSearch(products);
+  const {
+    query, setQuery, results,
+    isOpen: searchOpen, open: openSearch, close: closeSearch,
+  } = useQuickSearch(products);
 
   return (
     <>
@@ -36,7 +39,10 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-xs font-medium tracking-wider text-white/90 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-cream focus:ring-offset-2 focus:ring-offset-brand-green-dark rounded"
+                  className="text-xs font-medium tracking-wider text-white/90
+                    transition-colors hover:text-white focus:outline-none
+                    focus:ring-2 focus:ring-brand-cream focus:ring-offset-2
+                    focus:ring-offset-brand-green-dark rounded"
                 >
                   {link.label}
                 </a>
@@ -61,11 +67,26 @@ export default function Navbar() {
               aria-label={`Cart (${itemCount} items)`}
               className="relative text-white transition-colors hover:text-brand-cream"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
               </svg>
               {itemCount > 0 && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                <span
+                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4
+                    items-center justify-center rounded-full bg-red-500
+                    text-[10px] font-bold text-white"
+                >
                   {itemCount}
                 </span>
               )}
@@ -77,17 +98,40 @@ export default function Navbar() {
               aria-label={`Wishlist (${count} items)`}
               className="relative text-white transition-colors hover:text-brand-cream"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12
+                    5.67l-1.06-1.06a5.5 5.5 0 00-7.78
+                    7.78l1.06 1.06L12 21.23l7.78-7.78
+                    1.06-1.06a5.5 5.5 0 000-7.78z"
+                />
               </svg>
               {count > 0 && (
-                <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                <span
+                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4
+                    items-center justify-center rounded-full bg-red-500
+                    text-[10px] font-bold text-white"
+                >
                   {count}
                 </span>
               )}
             </button>
 
-            <button className="hidden rounded-full border border-white/30 px-5 py-2 text-xs font-medium text-white transition-colors hover:bg-white hover:text-brand-green-dark focus:outline-none focus:ring-2 focus:ring-brand-cream md:block">
+            <button
+              className="hidden rounded-full border border-white/30 px-5 py-2
+                text-xs font-medium text-white transition-colors
+                hover:bg-white hover:text-brand-green-dark focus:outline-none
+                focus:ring-2 focus:ring-brand-cream md:block"
+            >
               LOG IN
             </button>
 
@@ -97,11 +141,27 @@ export default function Navbar() {
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 {mobileOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>

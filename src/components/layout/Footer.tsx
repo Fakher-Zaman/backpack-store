@@ -42,13 +42,17 @@ export default function Footer() {
                 ref={emailRef}
                 type="email"
                 placeholder="Your email address"
-                className="w-64 rounded-full bg-white/10 px-5 py-3 text-sm text-white placeholder-white/50 outline-none focus:ring-2 focus:ring-brand-cream"
+                className="w-64 rounded-full bg-white/10 px-5 py-3 text-sm
+                  text-white placeholder-white/50 outline-none
+                  focus:ring-2 focus:ring-brand-cream"
                 required
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-green-dark transition hover:bg-brand-cream"
+                className="flex h-11 w-11 items-center justify-center
+                  rounded-full bg-white text-brand-green-dark
+                  transition hover:bg-brand-cream"
               >
                 <svg
                   className="h-4 w-4"
@@ -57,7 +61,12 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
                 </svg>
               </button>
             </form>
@@ -65,8 +74,14 @@ export default function Footer() {
 
           {/* FAQ link */}
           <div className="max-w-xs">
-            <h3 className="font-semibold">Your question may already be answered. Check our FAQ.</h3>
-            <a href="#faq" className="mt-2 inline-block text-xs text-white/70 underline hover:text-white">
+            <h3 className="font-semibold">
+              Your question may already be answered. Check our FAQ.
+            </h3>
+            <a
+              href="#faq"
+              className="mt-2 inline-block text-xs text-white/70
+                underline hover:text-white"
+            >
               www.piccollo.com/faq
             </a>
           </div>
@@ -91,7 +106,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+        <div
+          className="mt-12 flex flex-col items-center justify-between gap-4
+            border-t border-white/10 pt-8 sm:flex-row"
+        >
           <div className="flex gap-4 text-xs text-white/70">
             <a href="#about" className="hover:text-white">About</a>
             <a href="#privacy" className="hover:text-white">Privacy</a>
@@ -109,7 +127,9 @@ export default function Footer() {
                 key={label}
                 href="#"
                 aria-label={label}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-xs text-white/70 transition-colors hover:border-white hover:text-white"
+                className="flex h-8 w-8 items-center justify-center
+                  rounded-full border border-white/20 text-xs text-white/70
+                  transition-colors hover:border-white hover:text-white"
               >
                 {abbr}
               </a>

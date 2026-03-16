@@ -58,10 +58,23 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
           <button
             onClick={onClose}
             aria-label="Close wishlist"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800"
+            className="flex h-8 w-8 items-center justify-center rounded-full
+              text-gray-500 transition-colors hover:bg-gray-100
+              hover:text-gray-800"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -70,8 +83,22 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {wishlisted.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
-              <svg className="mb-4 h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+              <svg
+                className="mb-4 h-12 w-12 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12
+                    5.67l-1.06-1.06a5.5 5.5 0 00-7.78
+                    7.78l1.06 1.06L12 21.23l7.78-7.78
+                    1.06-1.06a5.5 5.5 0 000-7.78z"
+                />
               </svg>
               <p className="text-sm text-gray-500">Your wishlist is empty.</p>
               <p className="mt-1 text-xs text-gray-400">
@@ -94,10 +121,23 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
                   <button
                     onClick={() => toggle(product.id)}
                     aria-label={`Remove ${product.name} from wishlist`}
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-red-500"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center
+                      rounded-full text-gray-400 transition-colors
+                      hover:bg-gray-100 hover:text-red-500"
                   >
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </li>

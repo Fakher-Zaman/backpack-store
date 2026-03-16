@@ -11,10 +11,14 @@ export default function CollectionCard({ collection }: CollectionCardProps) {
         src={collection.image}
         alt={collection.title}
         loading="lazy"
-        className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+        className="h-64 w-full object-cover transition-transform duration-500
+          group-hover:scale-105 motion-reduce:transition-none"
       />
       <div className="absolute bottom-0 left-0 p-4">
-        <button className="rounded-md bg-brand-green-dark px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-brand-green">
+        <button
+          className="rounded-md bg-brand-green-dark px-4 py-2 text-xs
+            font-medium text-white transition-colors hover:bg-brand-green"
+        >
           {collection.title}
         </button>
       </div>

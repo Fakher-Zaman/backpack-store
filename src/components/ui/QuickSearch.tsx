@@ -9,7 +9,9 @@ function highlightMatch(text: string, query: string): React.ReactNode {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="bg-brand-green/20 text-brand-green-dark">{text.slice(idx, idx + query.length)}</mark>
+      <mark className="bg-brand-green/20 text-brand-green-dark">
+        {text.slice(idx, idx + query.length)}
+      </mark>
       {text.slice(idx + query.length)}
     </>
   );
@@ -24,7 +26,9 @@ function SearchResult({ product, query, onSelect }: {
     <a
       href="#products"
       onClick={onSelect}
-      className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+      className="flex items-center gap-3 rounded-lg px-3 py-2.5
+        transition-colors hover:bg-gray-50 focus:bg-gray-50
+        focus:outline-none"
     >
       <img
         src={product.image}
@@ -91,8 +95,19 @@ export default function QuickSearch({
         aria-label="Search products (Ctrl+K)"
         className="relative text-white transition-colors hover:text-brand-cream"
       >
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <svg
+          className="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
       </button>
 
@@ -112,8 +127,19 @@ export default function QuickSearch({
           >
             {/* Search input */}
             <div className="flex items-center gap-3 border-b border-gray-100 px-4 py-3">
-              <svg className="h-5 w-5 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                className="h-5 w-5 shrink-0 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
               <input
                 ref={inputRef}
@@ -122,9 +148,13 @@ export default function QuickSearch({
                 onChange={e => onQueryChange(e.target.value)}
                 placeholder="Search backpacks..."
                 aria-label="Search products"
-                className="flex-1 bg-transparent text-sm text-brand-charcoal placeholder:text-gray-400 focus:outline-none"
+                className="flex-1 bg-transparent text-sm text-brand-charcoal
+                  placeholder:text-gray-400 focus:outline-none"
               />
-              <kbd className="hidden rounded border border-gray-200 px-1.5 py-0.5 text-[10px] font-medium text-gray-400 sm:inline">
+              <kbd
+                className="hidden rounded border border-gray-200 px-1.5
+                  py-0.5 text-[10px] font-medium text-gray-400 sm:inline"
+              >
                 ESC
               </kbd>
             </div>

@@ -46,7 +46,8 @@ export default function SizeGuide() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open size guide"
-        className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-green transition-colors hover:text-brand-green-dark"
+        className="inline-flex items-center gap-1.5 text-xs font-medium
+          text-brand-green transition-colors hover:text-brand-green-dark"
       >
         <svg
           className="h-4 w-4"
@@ -71,11 +72,27 @@ export default function SizeGuide() {
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Size</th>
-                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Capacity</th>
-                <th className="hidden pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500 sm:table-cell">Dimensions</th>
-                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Laptop</th>
-                <th className="hidden pb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 sm:table-cell">Best For</th>
+                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Size
+                </th>
+                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Capacity
+                </th>
+                <th
+                  className="hidden pb-2 pr-4 text-xs font-semibold uppercase
+                    tracking-wide text-gray-500 sm:table-cell"
+                >
+                  Dimensions
+                </th>
+                <th className="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Laptop
+                </th>
+                <th
+                  className="hidden pb-2 text-xs font-semibold uppercase
+                    tracking-wide text-gray-500 sm:table-cell"
+                >
+                  Best For
+                </th>
               </tr>
             </thead>
             <tbody>

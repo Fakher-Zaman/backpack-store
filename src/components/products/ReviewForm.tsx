@@ -36,7 +36,9 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           value={author}
           onChange={e => setAuthor(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2
+            text-sm focus:border-brand-green focus:outline-none
+            focus:ring-1 focus:ring-brand-green"
         />
       </div>
       <div>
@@ -57,7 +59,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
                 className="p-0.5"
               >
                 <svg
-                  className={`h-5 w-5 transition-colors ${starValue <= displayRating ? 'text-yellow-400' : 'text-gray-300'}`}
+                  className={`h-5 w-5 transition-colors ${
+                    starValue <= displayRating
+                      ? 'text-yellow-400'
+                      : 'text-gray-300'
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   aria-hidden="true"
@@ -79,13 +85,17 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           onChange={e => setComment(e.target.value)}
           required
           rows={3}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2
+            text-sm focus:border-brand-green focus:outline-none
+            focus:ring-1 focus:ring-brand-green"
         />
       </div>
       <button
         type="submit"
         disabled={!author.trim() || rating === 0 || !comment.trim()}
-        className="rounded-lg bg-brand-green px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-green-dark disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-lg bg-brand-green px-4 py-2 text-sm font-medium
+          text-white transition-colors hover:bg-brand-green-dark
+          disabled:cursor-not-allowed disabled:opacity-50"
       >
         Submit Review
       </button>

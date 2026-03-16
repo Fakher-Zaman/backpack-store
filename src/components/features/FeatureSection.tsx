@@ -18,7 +18,11 @@ export default function FeatureSection() {
             combining superior energy boost with wellness-
             enhancing for optimal performance.
           </p>
-          <button className="mt-8 flex items-center gap-2 rounded-md bg-brand-green-dark px-5 py-3 text-xs font-medium text-white transition-colors hover:bg-brand-green">
+          <button
+            className="mt-8 flex items-center gap-2 rounded-md bg-brand-green-dark
+              px-5 py-3 text-xs font-medium text-white transition-colors
+              hover:bg-brand-green"
+          >
             Explore More
           </button>
         </div>

@@ -9,7 +9,10 @@ export default function HeroSection() {
     <section className="relative min-h-screen bg-brand-green-dark overflow-hidden">
       {/* Large PICCOLLO text */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24">
-        <h1 className="font-display text-[8vw] font-bold leading-none tracking-tight text-white md:text-[7rem] lg:text-[9rem]">
+        <h1
+          className="font-display text-[8vw] font-bold leading-none
+            tracking-tight text-white md:text-[7rem] lg:text-[9rem]"
+        >
           PICCOLLO
         </h1>
       </div>
@@ -25,9 +28,18 @@ export default function HeroSection() {
               className="mx-auto h-[60vh] md:h-[70vh] w-auto object-contain"
             />
             {/* Play button overlay */}
-            <button className="absolute bottom-32 left-8 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition hover:bg-white/20">
+            <button
+              className="absolute bottom-32 left-8 flex items-center gap-2
+                rounded-full bg-white/10 px-4 py-2 text-sm text-white
+                backdrop-blur-sm transition hover:bg-white/20"
+            >
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-brand-green-dark">
-                <svg className="h-3 w-3 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg
+                  className="h-3 w-3 ml-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>

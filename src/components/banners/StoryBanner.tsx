@@ -1,6 +1,6 @@
 export default function StoryBanner() {
   return (
-    <section id="story" className="bg-brand-green-dark py-20">
+    <section id="about" className="bg-brand-green-dark py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left: text */}
@@ -11,8 +11,9 @@ export default function StoryBanner() {
             </h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
               The Backpack is Designed For Those Who Are Active, Confident And Appreciate Functional Design Without
-              Sacrificing Style. With High-Quality Materials And Ergodic Design Focus, This Pack Is Ready To Accompany You On
-              Any Escapade From Your Office To A Weekend Trip.
+              Sacrificing Style. With High-Quality Materials And Ergodic
+              Design Focus, This Pack Is Ready To Accompany You On Any
+              Escapade From Your Office To A Weekend Trip.
             </p>
           </div>
 

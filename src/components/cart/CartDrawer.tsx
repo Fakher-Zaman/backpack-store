@@ -51,9 +51,17 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
           <button
             onClick={onClose}
             aria-label="Close cart"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800"
+            className="flex h-8 w-8 items-center justify-center rounded-full
+              text-gray-500 transition-colors hover:bg-gray-100
+              hover:text-gray-800"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -62,8 +70,19 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
-              <svg className="mb-4 h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              <svg
+                className="mb-4 h-12 w-12 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
               </svg>
               <p className="text-sm text-gray-500">Your cart is empty.</p>
               <p className="mt-1 text-xs text-gray-400">
@@ -91,7 +110,9 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
             </div>
             <button
               onClick={clearCart}
-              className="w-full rounded-lg border border-gray-200 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+              className="w-full rounded-lg border border-gray-200 py-2
+                text-sm font-medium text-gray-600 transition-colors
+                hover:bg-gray-50"
             >
               Clear Cart
             </button>

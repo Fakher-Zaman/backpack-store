@@ -33,9 +33,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+            className="h-56 w-full object-cover transition-transform duration-500
+              group-hover:scale-105 motion-reduce:transition-none"
           />
-          <div className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+          <div
+            className="absolute right-2 top-2 opacity-0 transition-opacity
+              group-hover:opacity-100 focus-within:opacity-100"
+          >
             <WishlistButton productId={product.id} />
           </div>
         </div>

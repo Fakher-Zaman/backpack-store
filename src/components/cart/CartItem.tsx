@@ -29,7 +29,9 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
             onClick={() => updateQuantity(productId, quantity - 1)}
             disabled={quantity <= 1}
             aria-label={`Decrease quantity of ${product.name}`}
-            className="flex h-6 w-6 items-center justify-center rounded border border-gray-200 text-xs text-gray-600 transition-colors hover:bg-gray-100 disabled:opacity-40"
+            className="flex h-6 w-6 items-center justify-center rounded
+              border border-gray-200 text-xs text-gray-600
+              transition-colors hover:bg-gray-100 disabled:opacity-40"
           >
             -
           </button>
@@ -37,7 +39,9 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
           <button
             onClick={() => updateQuantity(productId, quantity + 1)}
             aria-label={`Increase quantity of ${product.name}`}
-            className="flex h-6 w-6 items-center justify-center rounded border border-gray-200 text-xs text-gray-600 transition-colors hover:bg-gray-100"
+            className="flex h-6 w-6 items-center justify-center rounded
+              border border-gray-200 text-xs text-gray-600
+              transition-colors hover:bg-gray-100"
           >
             +
           </button>
@@ -48,9 +52,17 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
         <button
           onClick={() => removeItem(productId)}
           aria-label={`Remove ${product.name} from cart`}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-red-500"
+          className="flex h-7 w-7 shrink-0 items-center justify-center
+            rounded-full text-gray-400 transition-colors
+            hover:bg-gray-100 hover:text-red-500"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>

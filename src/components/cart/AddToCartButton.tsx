@@ -11,7 +11,8 @@ export default function AddToCartButton({ productId }: AddToCartButtonProps) {
     <button
       onClick={() => addItem(productId)}
       aria-label="Add to cart"
-      className="mt-2 w-full rounded-lg bg-brand-green py-2 text-xs font-medium text-white transition-colors hover:bg-brand-green-dark"
+      className="mt-2 w-full rounded-lg bg-brand-green py-2 text-xs
+        font-medium text-white transition-colors hover:bg-brand-green-dark"
     >
       Add to Cart
     </button>
