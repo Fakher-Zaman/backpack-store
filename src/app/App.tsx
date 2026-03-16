@@ -1,6 +1,7 @@
 import { WishlistProvider } from '@/hooks/useWishlist';
 import { CartProvider } from '@/hooks/useCart';
 import { ReviewsProvider } from '@/hooks/useReviews';
+import { AuthProvider } from '@/hooks/useAuth';
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/hero/HeroSection';
 import LatestCollection from '@/components/collections/LatestCollection';
@@ -13,6 +14,7 @@ import Footer from '@/components/layout/Footer';
 
 export default function App() {
   return (
+    <AuthProvider>
     <WishlistProvider>
     <CartProvider>
     <ReviewsProvider>
@@ -40,5 +42,6 @@ export default function App() {
     </ReviewsProvider>
     </CartProvider>
     </WishlistProvider>
+    </AuthProvider>
   );
 }
