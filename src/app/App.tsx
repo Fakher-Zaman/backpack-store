@@ -1,4 +1,5 @@
 import { WishlistProvider } from '@/hooks/useWishlist';
+import { ReviewsProvider } from '@/hooks/useReviews';
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/hero/HeroSection';
 import LatestCollection from '@/components/collections/LatestCollection';
@@ -12,6 +13,7 @@ import Footer from '@/components/layout/Footer';
 export default function App() {
   return (
     <WishlistProvider>
+    <ReviewsProvider>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-green-dark focus:px-4 focus:py-2 focus:text-white"
@@ -29,6 +31,7 @@ export default function App() {
         <PromoBanner />
       </main>
       <Footer />
+    </ReviewsProvider>
     </WishlistProvider>
   );
 }
