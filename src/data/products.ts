@@ -9,6 +9,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500&h=500&fit=crop',
     rating: 4.5,
     colors: ['#2C2C2C', '#5C4033', '#1A3A25'],
+    category: 'Casual',
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
     rating: 4,
     colors: ['#2C2C2C', '#4A5568'],
+    category: 'Travel',
   },
   {
     id: 3,
@@ -26,6 +28,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1509762774605-f07235a08f1f?w=500&h=500&fit=crop',
     rating: 5,
     colors: ['#1A3A25', '#2C2C2C'],
+    category: 'Outdoor',
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=500&h=500&fit=crop',
     rating: 4,
     colors: ['#E8DFD0', '#2C2C2C', '#5C4033'],
+    category: 'Casual',
   },
   {
     id: 5,
@@ -42,6 +46,7 @@ export const products: Product[] = [
     originalPrice: 189,
     image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop',
     rating: 4.5,
+    category: 'Casual',
   },
   {
     id: 6,
@@ -50,5 +55,6 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=500&h=500&fit=crop',
     rating: 4.5,
     colors: ['#2C2C2C', '#1A3A25'],
+    category: 'Outdoor',
   },
 ];

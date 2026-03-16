@@ -12,6 +12,7 @@ export interface Product {
   image: string;
   rating: number;
   colors?: string[];
+  category?: string;
 }
 
 export interface Review {
