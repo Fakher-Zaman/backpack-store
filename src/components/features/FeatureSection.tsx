@@ -1,10 +1,10 @@
 export default function FeatureSection() {
   return (
-    <section className="bg-brand-cream py-20">
+    <section className="bg-brand-cream py-20 dark:bg-brand-dark-surface">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
         {/* Left: text */}
         <div>
-          <h2 className="font-display text-4xl font-bold uppercase leading-tight md:text-5xl lg:text-6xl">
+          <h2 className="font-display text-4xl font-bold uppercase leading-tight md:text-5xl lg:text-6xl dark:text-gray-100">
             Find the
             <br />
             backpack
@@ -13,7 +13,7 @@ export default function FeatureSection() {
             <br />
             choice
           </h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-gray-600">
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-gray-600 dark:text-gray-400">
             Experience the benefits of top backpacks for health,
             combining superior energy boost with wellness-
             enhancing for optimal performance.

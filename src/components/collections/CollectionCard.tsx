@@ -6,7 +6,7 @@ interface CollectionCardProps {
 
 export default function CollectionCard({ collection }: CollectionCardProps) {
   return (
-    <article className="group relative overflow-hidden rounded-xl bg-gray-100">
+    <article className="group relative overflow-hidden rounded-xl bg-gray-100 dark:bg-brand-dark-surface">
       <img
         src={collection.image}
         alt={collection.title}

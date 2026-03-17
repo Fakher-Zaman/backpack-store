@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
@@ -11,6 +12,7 @@ import QuickSearch from '@/components/ui/QuickSearch';
 import LoginModal from '@/components/auth/LoginModal';
 import UserMenu from '@/components/auth/UserMenu';
 import Dashboard from '@/components/auth/Dashboard';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { label: 'STORE', to: '/#products' },
@@ -36,6 +38,7 @@ export default function Navbar() {
 
   const { pathname } = useLocation();
   const isHome = pathname === '/';
+  const shouldReduce = useReducedMotion();
 
   return (
     <>
@@ -65,6 +68,9 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
+            {/* Theme toggle */}
+            <ThemeToggle />
+
             {/* Search */}
             <QuickSearch
               isOpen={searchOpen}
@@ -187,23 +193,31 @@ export default function Navbar() {
           </div>
         </div>
 
-        {mobileOpen && (
-          <div className="bg-brand-green-dark/95 px-6 py-4 backdrop-blur-sm md:hidden">
-            <ul className="space-y-4">
-              {navLinks.map(link => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="block text-sm font-medium text-white"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={shouldReduce ? false : { opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={shouldReduce ? undefined : { opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden bg-brand-green-dark/95 px-6 py-4 backdrop-blur-sm md:hidden"
+            >
+              <ul className="space-y-4">
+                {navLinks.map(link => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className="block text-sm font-medium text-white"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <WishlistDrawer open={wishlistOpen} onClose={() => setWishlistOpen(false)} />

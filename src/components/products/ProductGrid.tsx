@@ -17,10 +17,10 @@ export default function ProductGrid() {
   } = useProductFilter(products);
 
   return (
-    <section id="products" className="bg-white py-20">
+    <section id="products" className="bg-white py-20 dark:bg-brand-dark-bg">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <h2 className="font-display text-3xl font-bold uppercase md:text-4xl">
+          <h2 className="font-display text-3xl font-bold uppercase md:text-4xl dark:text-gray-100">
             All Products
             <br />
             Available

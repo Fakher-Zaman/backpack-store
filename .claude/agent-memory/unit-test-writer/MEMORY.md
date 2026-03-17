@@ -11,6 +11,7 @@
 - HTML `<input type="email">` with native validation can prevent form submit in jsdom; test Zod validation by submitting with empty email field instead of invalid format
 - When text appears in both heading and button (e.g., "Log In"), use `screen.getByRole('heading', { name: /log in/i })` to disambiguate
 - Context hooks that throw outside provider: the `renderHook` error logs are expected console noise, tests still pass
+- `window.matchMedia` is NOT available in jsdom — must mock via `Object.defineProperty(window, 'matchMedia', { writable: true, value: vi.fn().mockReturnValue({...}) })`
 
 ## Mock Patterns
 - Auth service: `vi.mock('@/lib/auth', () => ({ loginUser: vi.fn(), logoutUser: vi.fn().mockResolvedValue(undefined) }))`

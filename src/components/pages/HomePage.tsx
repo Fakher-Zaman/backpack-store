@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import AnimatedPage from '@/components/ui/AnimatedPage';
 import HeroSection from '@/components/hero/HeroSection';
 import LatestCollection from '@/components/collections/LatestCollection';
 import FeatureSection from '@/components/features/FeatureSection';
@@ -21,7 +22,7 @@ export default function HomePage() {
   }, [hash]);
 
   return (
-    <>
+    <AnimatedPage>
       <HeroSection />
       <LatestCollection />
       <FeatureSection />
@@ -29,6 +30,6 @@ export default function HomePage() {
       <StoryBanner />
       <BlogSection />
       <PromoBanner />
-    </>
+    </AnimatedPage>
   );
 }

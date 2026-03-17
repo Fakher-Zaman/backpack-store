@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from '@/hooks/useTheme';
 import { WishlistProvider } from '@/hooks/useWishlist';
 import { CartProvider } from '@/hooks/useCart';
 import { ReviewsProvider } from '@/hooks/useReviews';
@@ -13,9 +15,27 @@ import ContactPage from '@/components/pages/ContactPage';
 import FaqPage from '@/components/pages/FaqPage';
 import NotFoundPage from '@/components/pages/NotFoundPage';
 
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FaqPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+    <ThemeProvider>
     <AuthProvider>
     <WishlistProvider>
     <CartProvider>
@@ -33,20 +53,14 @@ export default function App() {
       </a>
       <Navbar />
       <main id="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <AnimatedRoutes />
       </main>
       <Footer />
     </ReviewsProvider>
     </CartProvider>
     </WishlistProvider>
     </AuthProvider>
+    </ThemeProvider>
     </BrowserRouter>
   );
 }

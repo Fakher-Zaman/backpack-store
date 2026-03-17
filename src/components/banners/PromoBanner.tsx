@@ -1,15 +1,15 @@
 export default function PromoBanner() {
   return (
-    <section id="campaigns" className="bg-brand-cream py-16">
+    <section id="campaigns" className="bg-brand-cream py-16 dark:bg-brand-dark-surface">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl dark:text-gray-100">
               Save 20% or more
               <br />
               on Energy Drinks
             </h2>
-            <p className="mt-4 max-w-md text-sm text-gray-600">
+            <p className="mt-4 max-w-md text-sm text-gray-600 dark:text-gray-400">
               Unlock Savings. Get 20% or More Off Your
               Favorite Energy Drinks.
             </p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { Product } from '@/types';
 import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
@@ -25,12 +26,18 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { getAverageRating, getProductReviews } = useReviews();
   const avgRating = getAverageRating(product.id);
   const reviewCount = getProductReviews(product.id).length;
+  const shouldReduce = useReducedMotion();
 
   return (
     <>
-      <article className="group">
+      <motion.article
+        className="group"
+        initial={shouldReduce ? false : { opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+      >
         <Link to={`/products/${product.id}`} className="block">
-          <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100">
+          <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100 dark:bg-brand-dark-surface">
             <img
               src={product.image}
               alt={product.name}
@@ -46,7 +53,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <WishlistButton productId={product.id} />
             </div>
           </div>
-          <h3 className="text-sm font-semibold">{product.name}</h3>
+          <h3 className="text-sm font-semibold dark:text-gray-100">{product.name}</h3>
         </Link>
         {product.colors && (
           <div className="mt-1 flex items-center gap-1.5" role="list" aria-label="Available colors">
@@ -55,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 key={i}
                 role="listitem"
                 aria-label={COLOR_NAMES[color] ?? color}
-                className="h-2.5 w-2.5 rounded-full border border-gray-200"
+                className="h-2.5 w-2.5 rounded-full border border-gray-200 dark:border-brand-dark-border"
                 style={{ backgroundColor: color }}
               />
             ))}
@@ -66,19 +73,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           <button
             onClick={() => setShowReviews(true)}
             aria-label={`Reviews for ${product.name}`}
-            className="text-xs text-gray-400 transition-colors hover:text-brand-green"
+            className="text-xs text-gray-400 transition-colors hover:text-brand-green dark:text-gray-500 dark:hover:text-brand-green-light"
           >
             ({reviewCount})
           </button>
         </div>
         <div className="mt-1 flex items-center gap-2">
           {product.originalPrice && (
-            <span className="text-xs text-gray-400 line-through">${product.originalPrice}</span>
+            <span className="text-xs text-gray-400 line-through dark:text-gray-500">${product.originalPrice}</span>
           )}
-          <span className="text-sm font-bold">${product.price}</span>
+          <span className="text-sm font-bold dark:text-gray-100">${product.price}</span>
         </div>
         <AddToCartButton productId={product.id} />
-      </article>
+      </motion.article>
       <ReviewModal
         isOpen={showReviews}
         onClose={() => setShowReviews(false)}

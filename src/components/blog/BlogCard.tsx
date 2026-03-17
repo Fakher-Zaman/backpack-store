@@ -16,9 +16,9 @@ export default function BlogCard({ post }: BlogCardProps) {
             group-hover:scale-105 motion-reduce:transition-none"
         />
       </div>
-      <h3 className="text-sm font-semibold">{post.title}</h3>
-      <p className="mt-1 text-xs leading-relaxed text-gray-500 line-clamp-2">{post.excerpt}</p>
-      <p className="mt-2 text-[10px] text-gray-400">
+      <h3 className="text-sm font-semibold dark:text-gray-100">{post.title}</h3>
+      <p className="mt-1 text-xs leading-relaxed text-gray-500 line-clamp-2 dark:text-gray-400">{post.excerpt}</p>
+      <p className="mt-2 text-[10px] text-gray-400 dark:text-gray-500">
         {post.author} &middot; {post.date}
       </p>
     </article>
