@@ -42,9 +42,9 @@ export default function UserMenu({ onDashboard }: UserMenuProps) {
           className="absolute right-0 top-full mt-2 w-48 rounded-xl bg-white dark:bg-brand-dark-surface py-2 shadow-lg
             ring-1 ring-black/5 dark:ring-brand-dark-border"
         >
-          <div className="border-b border-gray-100 px-4 py-2">
-            <p className="text-sm font-medium text-brand-charcoal">{user.name}</p>
-            <p className="truncate text-xs text-gray-500">{user.email}</p>
+          <div className="border-b border-gray-100 dark:border-brand-dark-border px-4 py-2">
+            <p className="text-sm font-medium text-brand-charcoal dark:text-gray-100">{user.name}</p>
+            <p className="truncate text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
           </div>
 
           <button
