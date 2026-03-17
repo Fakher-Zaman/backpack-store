@@ -1,23 +1,26 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { WishlistProvider } from '@/hooks/useWishlist';
 import { CartProvider } from '@/hooks/useCart';
 import { ReviewsProvider } from '@/hooks/useReviews';
 import { AuthProvider } from '@/hooks/useAuth';
 import Navbar from '@/components/layout/Navbar';
-import HeroSection from '@/components/hero/HeroSection';
-import LatestCollection from '@/components/collections/LatestCollection';
-import FeatureSection from '@/components/features/FeatureSection';
-import ProductGrid from '@/components/products/ProductGrid';
-import StoryBanner from '@/components/banners/StoryBanner';
-import BlogSection from '@/components/blog/BlogSection';
-import PromoBanner from '@/components/banners/PromoBanner';
 import Footer from '@/components/layout/Footer';
+import ScrollToTop from '@/components/layout/ScrollToTop';
+import HomePage from '@/components/pages/HomePage';
+import ProductDetailPage from '@/components/pages/ProductDetailPage';
+import AboutPage from '@/components/pages/AboutPage';
+import ContactPage from '@/components/pages/ContactPage';
+import FaqPage from '@/components/pages/FaqPage';
+import NotFoundPage from '@/components/pages/NotFoundPage';
 
 export default function App() {
   return (
+    <BrowserRouter>
     <AuthProvider>
     <WishlistProvider>
     <CartProvider>
     <ReviewsProvider>
+      <ScrollToTop />
       <a
         href="#main-content"
         className={[
@@ -30,18 +33,20 @@ export default function App() {
       </a>
       <Navbar />
       <main id="main-content">
-        <HeroSection />
-        <LatestCollection />
-        <FeatureSection />
-        <ProductGrid />
-        <StoryBanner />
-        <BlogSection />
-        <PromoBanner />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </main>
       <Footer />
     </ReviewsProvider>
     </CartProvider>
     </WishlistProvider>
     </AuthProvider>
+    </BrowserRouter>
   );
 }

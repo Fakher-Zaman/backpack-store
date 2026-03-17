@@ -13,6 +13,7 @@ export interface Product {
   rating: number;
   colors?: string[];
   category?: string;
+  description?: string;
 }
 
 export interface Review {
@@ -31,4 +32,18 @@ export interface BlogPost {
   image: string;
   author: string;
   date: string;
+}
+
+export interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+export interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
 }

@@ -14,10 +14,6 @@
   },
   "permissions": {
     "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "Bash(npm run build)",
-      "Bash(npm start)"
     ]
   }
 }

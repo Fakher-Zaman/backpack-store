@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
@@ -12,11 +13,11 @@ import UserMenu from '@/components/auth/UserMenu';
 import Dashboard from '@/components/auth/Dashboard';
 
 const navLinks = [
-  { label: 'STORE', href: '#collections' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'PRODUCTS', href: '#products' },
-  { label: 'CAMPAIGNS', href: '#campaigns' },
-  { label: 'BLOG', href: '#blog' },
+  { label: 'STORE', to: '/#products' },
+  { label: 'ABOUT', to: '/about' },
+  { label: 'PRODUCTS', to: '/#products' },
+  { label: 'FAQ', to: '/faq' },
+  { label: 'CONTACT', to: '/contact' },
 ];
 
 export default function Navbar() {
@@ -33,26 +34,32 @@ export default function Navbar() {
     isOpen: searchOpen, open: openSearch, close: closeSearch,
   } = useQuickSearch(products);
 
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
+
   return (
     <>
-      <nav className="absolute top-0 z-50 w-full" aria-label="Main navigation">
+      <nav
+        className={`${isHome ? 'absolute' : 'fixed bg-brand-green-dark'} top-0 z-50 w-full`}
+        aria-label="Main navigation"
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href="#" className="font-display text-xl font-bold tracking-wider text-white">
+          <Link to="/" className="font-display text-xl font-bold tracking-wider text-white">
             PICCOLLO
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-8 md:flex">
             {navLinks.map(link => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
+              <li key={link.label}>
+                <Link
+                  to={link.to}
                   className="text-xs font-medium tracking-wider text-white/90
                     transition-colors hover:text-white focus:outline-none
                     focus:ring-2 focus:ring-brand-cream focus:ring-offset-2
                     focus:ring-offset-brand-green-dark rounded"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -184,14 +191,14 @@ export default function Navbar() {
           <div className="bg-brand-green-dark/95 px-6 py-4 backdrop-blur-sm md:hidden">
             <ul className="space-y-4">
               {navLinks.map(link => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
                     className="block text-sm font-medium text-white"
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

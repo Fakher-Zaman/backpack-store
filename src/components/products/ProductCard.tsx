@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import type { Product } from '@/types';
 import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
@@ -28,22 +29,25 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <article className="group">
-        <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100">
-          <img
-            src={product.image}
-            alt={product.name}
-            loading="lazy"
-            className="h-56 w-full object-cover transition-transform duration-500
-              group-hover:scale-105 motion-reduce:transition-none"
-          />
-          <div
-            className="absolute right-2 top-2 opacity-0 transition-opacity
-              group-hover:opacity-100 focus-within:opacity-100"
-          >
-            <WishlistButton productId={product.id} />
+        <Link to={`/products/${product.id}`} className="block">
+          <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100">
+            <img
+              src={product.image}
+              alt={product.name}
+              loading="lazy"
+              className="h-56 w-full object-cover transition-transform duration-500
+                group-hover:scale-105 motion-reduce:transition-none"
+            />
+            <div
+              className="absolute right-2 top-2 opacity-0 transition-opacity
+                group-hover:opacity-100 focus-within:opacity-100"
+              onClick={e => e.preventDefault()}
+            >
+              <WishlistButton productId={product.id} />
+            </div>
           </div>
-        </div>
-        <h3 className="text-sm font-semibold">{product.name}</h3>
+          <h3 className="text-sm font-semibold">{product.name}</h3>
+        </Link>
         {product.colors && (
           <div className="mt-1 flex items-center gap-1.5" role="list" aria-label="Available colors">
             {product.colors.map((color, i) => (

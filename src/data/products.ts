@@ -10,6 +10,8 @@ export const products: Product[] = [
     rating: 4.5,
     colors: ['#2C2C2C', '#5C4033', '#1A3A25'],
     category: 'Casual',
+    description:
+      'A timeless everyday carry made from organic cotton canvas with vegetable-tanned leather accents. Features a padded laptop sleeve, dual water bottle pockets, and a hidden anti-theft pocket. Perfect for commuting, campus, or weekend getaways.',
   },
   {
     id: 2,
@@ -19,6 +21,8 @@ export const products: Product[] = [
     rating: 4,
     colors: ['#2C2C2C', '#4A5568'],
     category: 'Travel',
+    description:
+      'Designed for city adventurers who need versatility. Made from recycled polyester with a water-resistant coating, it includes a roll-top closure, quick-access front pocket, and integrated USB charging port.',
   },
   {
     id: 3,
@@ -29,6 +33,8 @@ export const products: Product[] = [
     rating: 5,
     colors: ['#1A3A25', '#2C2C2C'],
     category: 'Outdoor',
+    description:
+      'Built for serious hikers. 45L capacity with an adjustable torso-length harness, load-lifter straps, and a ventilated back panel. Includes a rain cover, trekking pole attachments, and a hydration reservoir sleeve.',
   },
   {
     id: 4,
@@ -38,6 +44,8 @@ export const products: Product[] = [
     rating: 4,
     colors: ['#E8DFD0', '#2C2C2C', '#5C4033'],
     category: 'Casual',
+    description:
+      'Light, simple, and effortlessly stylish. This 18L day pack is made from organic cotton and weighs just 340g. Ideal for daily errands, light travel, or a minimalist carry.',
   },
   {
     id: 5,
@@ -47,6 +55,8 @@ export const products: Product[] = [
     image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop',
     rating: 4.5,
     category: 'Casual',
+    description:
+      'Hand-stitched from full-grain vegetable-tanned leather that develops a rich patina over time. Features solid brass hardware, a suede-lined laptop compartment, and two front buckle pockets.',
   },
   {
     id: 6,
@@ -56,5 +66,7 @@ export const products: Product[] = [
     rating: 4.5,
     colors: ['#2C2C2C', '#1A3A25'],
     category: 'Outdoor',
+    description:
+      'Go anywhere in any weather. Fully welded seams, waterproof YKK zippers, and a 500D TPU-coated shell keep your gear dry in the harshest conditions. 35L capacity with a removable hip belt.',
   },
 ];
