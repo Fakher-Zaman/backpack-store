@@ -43,25 +43,25 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="flex h-full flex-col">
-      <div className="flex items-center gap-3 border-b px-6 py-4">
+      <div className="flex items-center gap-3 border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
         <button
           type="button"
           onClick={onBack}
           disabled={isProcessing}
           aria-label="Back to cart"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500
-            transition-colors hover:bg-gray-100 hover:text-gray-800 disabled:opacity-40"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 dark:text-gray-400
+            transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-40"
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h2 className="font-display text-lg font-bold">Checkout</h2>
+        <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-100">Checkout</h2>
       </div>
 
       <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
         <div>
-          <label htmlFor="checkout-name" className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="checkout-name" className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Full Name
           </label>
           <input
@@ -74,15 +74,16 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             onChange={e => setName(e.target.value)}
             disabled={isProcessing}
             placeholder="John Doe"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm
-              transition-colors placeholder:text-gray-400
+            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
+              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
+              transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500
               focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green
-              disabled:bg-gray-50 disabled:text-gray-400"
+              disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
           />
         </div>
 
         <div>
-          <label htmlFor="checkout-email" className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="checkout-email" className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Email
           </label>
           <input
@@ -93,15 +94,16 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             onChange={e => setEmail(e.target.value)}
             disabled={isProcessing}
             placeholder="john@example.com"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm
-              transition-colors placeholder:text-gray-400
+            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
+              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
+              transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500
               focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green
-              disabled:bg-gray-50 disabled:text-gray-400"
+              disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
           />
         </div>
 
         <div>
-          <label htmlFor="checkout-currency" className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="checkout-currency" className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Currency
           </label>
           <select
@@ -109,9 +111,10 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             value={currency}
             onChange={e => setCurrency(e.target.value as typeof CURRENCIES[number])}
             disabled={isProcessing}
-            className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm
+            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
+              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
               transition-colors focus:border-brand-green focus:outline-none focus:ring-1
-              focus:ring-brand-green disabled:bg-gray-50 disabled:text-gray-400"
+              focus:ring-brand-green disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
           >
             {CURRENCIES.map(c => (
               <option key={c} value={c}>{c} ({CURRENCY_SYMBOLS[c]})</option>
@@ -122,17 +125,17 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
         {error && (
           <div
             role="alert"
-            className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+            className="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-700 dark:text-red-400"
           >
             {error}
           </div>
         )}
       </div>
 
-      <div className="border-t px-6 py-4">
+      <div className="border-t border-gray-200 dark:border-brand-dark-border px-6 py-4">
         <div className="mb-4 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-600">Total</span>
-          <span className="text-lg font-bold">
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
+          <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
             {CURRENCY_SYMBOLS[currency]}{total.toFixed(2)}
           </span>
         </div>

@@ -27,7 +27,7 @@ function SearchResult({ product, query, onSelect }: {
       href="#products"
       onClick={onSelect}
       className="flex items-center gap-3 rounded-lg px-3 py-2.5
-        transition-colors hover:bg-gray-50 focus:bg-gray-50
+        transition-colors hover:bg-gray-50 dark:hover:bg-brand-dark-border focus:bg-gray-50 dark:focus:bg-brand-dark-border
         focus:outline-none"
     >
       <img
@@ -122,7 +122,7 @@ export default function QuickSearch({
             role="dialog"
             aria-modal="true"
             aria-label="Quick search"
-            className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="w-full max-w-md overflow-hidden rounded-2xl bg-white dark:bg-brand-dark-surface shadow-2xl"
             onClick={e => e.stopPropagation()}
           >
             {/* Search input */}

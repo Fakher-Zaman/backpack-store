@@ -61,7 +61,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
         aria-label="Shopping cart"
         aria-modal="true"
         tabIndex={-1}
-        className="fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white shadow-xl outline-none"
+        className="fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white dark:bg-brand-dark-surface shadow-xl outline-none"
       >
         {view === 'checkout' && (
           <CheckoutForm
@@ -72,13 +72,13 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
 
         {view === 'success' && paymentResult && (
           <div className="flex h-full flex-col">
-            <div className="flex items-center justify-between border-b px-6 py-4">
-              <h2 className="font-display text-lg font-bold">Order Confirmed</h2>
+            <div className="flex items-center justify-between border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
+              <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-100">Order Confirmed</h2>
               <button
                 onClick={onClose}
                 aria-label="Close"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500
-                  transition-colors hover:bg-gray-100 hover:text-gray-800"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 dark:text-gray-400
+                  transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-gray-800 dark:hover:text-gray-200"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -98,33 +98,33 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="mb-2 font-display text-xl font-bold text-brand-charcoal">
+              <h3 className="mb-2 font-display text-xl font-bold text-brand-charcoal dark:text-gray-100">
                 Payment Successful
               </h3>
-              <p className="mb-6 text-sm text-gray-500">
+              <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
                 Your order has been placed successfully.
               </p>
 
-              <div className="w-full rounded-lg border border-gray-100 bg-gray-50 p-4 text-left text-sm">
+              <div className="w-full rounded-lg border border-gray-100 dark:border-brand-dark-border bg-gray-50 dark:bg-brand-dark-bg p-4 text-left text-sm">
                 <div className="mb-2 flex justify-between">
-                  <span className="text-gray-500">Order ID</span>
-                  <span className="font-mono text-xs font-medium">{paymentResult.id}</span>
+                  <span className="text-gray-500 dark:text-gray-400">Order ID</span>
+                  <span className="font-mono text-xs font-medium text-gray-900 dark:text-gray-100">{paymentResult.id}</span>
                 </div>
                 <div className="mb-2 flex justify-between">
-                  <span className="text-gray-500">Amount</span>
-                  <span className="font-semibold">
+                  <span className="text-gray-500 dark:text-gray-400">Amount</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">
                     {paymentResult.currency === 'USD' ? '$' : paymentResult.currency === 'EUR' ? '\u20AC' : '\u00A3'}
                     {paymentResult.amount.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Status</span>
+                  <span className="text-gray-500 dark:text-gray-400">Status</span>
                   <span className="font-semibold text-brand-green">Confirmed</span>
                 </div>
               </div>
             </div>
 
-            <div className="border-t px-6 py-4">
+            <div className="border-t border-gray-200 dark:border-brand-dark-border px-6 py-4">
               <button
                 onClick={onClose}
                 className="w-full rounded-lg bg-brand-green py-3 text-sm font-semibold text-white
@@ -138,16 +138,16 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
 
         {view === 'cart' && (
           <>
-            <div className="flex items-center justify-between border-b px-6 py-4">
-              <h2 className="font-display text-lg font-bold">
+            <div className="flex items-center justify-between border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
+              <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-100">
                 Cart ({items.length})
               </h2>
               <button
                 onClick={onClose}
                 aria-label="Close cart"
                 className="flex h-8 w-8 items-center justify-center rounded-full
-                  text-gray-500 transition-colors hover:bg-gray-100
-                  hover:text-gray-800"
+                  text-gray-500 dark:text-gray-400 transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border
+                  hover:text-gray-800 dark:hover:text-gray-200"
               >
                 <svg
                   className="h-5 w-5"
@@ -178,8 +178,8 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                       d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                     />
                   </svg>
-                  <p className="text-sm text-gray-500">Your cart is empty.</p>
-                  <p className="mt-1 text-xs text-gray-400">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Your cart is empty.</p>
+                  <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                     Add items from the product grid to get started.
                   </p>
                 </div>
@@ -197,10 +197,10 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
             </div>
 
             {items.length > 0 && (
-              <div className="border-t px-6 py-4">
+              <div className="border-t border-gray-200 dark:border-brand-dark-border px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-gray-600">Subtotal</span>
-                  <span className="text-lg font-bold">${total.toFixed(2)}</span>
+                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Subtotal</span>
+                  <span className="text-lg font-bold text-gray-900 dark:text-gray-100">${total.toFixed(2)}</span>
                 </div>
                 <button
                   onClick={() => setView('checkout')}
@@ -212,9 +212,9 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                 </button>
                 <button
                   onClick={clearCart}
-                  className="w-full rounded-lg border border-gray-200 py-2
-                    text-sm font-medium text-gray-600 transition-colors
-                    hover:bg-gray-50"
+                  className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border py-2
+                    text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors
+                    hover:bg-gray-50 dark:hover:bg-brand-dark-border"
                 >
                   Clear Cart
                 </button>

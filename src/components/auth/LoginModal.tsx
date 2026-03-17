@@ -85,7 +85,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         aria-modal="true"
         aria-label="Log in to your account"
         tabIndex={-1}
-        className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl focus:outline-none"
+        className="w-full max-w-md rounded-2xl bg-white dark:bg-brand-dark-surface p-6 shadow-xl focus:outline-none"
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-6 flex items-center justify-between">

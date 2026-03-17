@@ -48,19 +48,19 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
         aria-label="Wishlist"
         aria-modal="true"
         tabIndex={-1}
-        className="fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white shadow-xl outline-none"
+        className="fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white dark:bg-brand-dark-surface shadow-xl outline-none"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b px-6 py-4">
-          <h2 className="font-display text-lg font-bold">
+        <div className="flex items-center justify-between border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
+          <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-100">
             Wishlist ({wishlisted.length})
           </h2>
           <button
             onClick={onClose}
             aria-label="Close wishlist"
             className="flex h-8 w-8 items-center justify-center rounded-full
-              text-gray-500 transition-colors hover:bg-gray-100
-              hover:text-gray-800"
+              text-gray-500 dark:text-gray-400 transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border
+              hover:text-gray-800 dark:hover:text-gray-200"
           >
             <svg
               className="h-5 w-5"
@@ -100,8 +100,8 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
                     1.06-1.06a5.5 5.5 0 000-7.78z"
                 />
               </svg>
-              <p className="text-sm text-gray-500">Your wishlist is empty.</p>
-              <p className="mt-1 text-xs text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400">Your wishlist is empty.</p>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                 Tap the heart icon on products to save them here.
               </p>
             </div>
@@ -115,15 +115,15 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
                     className="h-16 w-16 rounded-lg object-cover"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="truncate text-sm font-semibold">{product.name}</p>
-                    <p className="text-sm text-gray-500">${product.price}</p>
+                    <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">{product.name}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">${product.price}</p>
                   </div>
                   <button
                     onClick={() => toggle(product.id)}
                     aria-label={`Remove ${product.name} from wishlist`}
                     className="flex h-7 w-7 shrink-0 items-center justify-center
-                      rounded-full text-gray-400 transition-colors
-                      hover:bg-gray-100 hover:text-red-500"
+                      rounded-full text-gray-400 dark:text-gray-500 transition-colors
+                      hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-red-500 dark:hover:text-red-400"
                   >
                     <svg
                       className="h-4 w-4"

@@ -46,7 +46,7 @@ export default function ReviewModal({ isOpen, onClose, title, children }: Review
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-6 shadow-xl focus:outline-none"
+        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white dark:bg-brand-dark-surface p-6 shadow-xl focus:outline-none"
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
