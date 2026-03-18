@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Comprehensive code review skill for TypeScript, JavaScript, Python, Swift, Kotlin, Go. Includes automated code analysis, best practice checking, security scanning, and review checklist generation. Use when reviewing pull requests, providing code feedback, identifying issues, or ensuring code quality standards.
+description: Comprehensive code review skill for TypeScript, JavaScript. Includes automated code analysis, best practice checking, security scanning, and review checklist generation. Use when reviewing pull requests, providing code feedback, identifying issues, or ensuring code quality standards.
 ---
 
 # Code Reviewer
@@ -105,12 +105,12 @@ Technical reference guide in `references/common_antipatterns.md`:
 
 ## Tech Stack
 
-**Languages:** TypeScript, JavaScript, Python, Go, Swift, Kotlin
-**Frontend:** React, Next.js, React Native, Flutter
+**Languages:** TypeScript, JavaScript
+**Frontend:** React
 **Backend:** Node.js, Express, GraphQL, REST APIs
-**Database:** PostgreSQL, Prisma, NeonDB, Supabase
-**DevOps:** Docker, Kubernetes, Terraform, GitHub Actions, CircleCI
-**Cloud:** AWS, GCP, Azure
+**Database:** MongoDB, Supabase
+**DevOps:** Docker, GitHub Actions
+**Cloud:** AWS, Azure
 
 ## Development Workflow
 

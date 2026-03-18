@@ -64,30 +64,6 @@ import type { User } from '@/types';
 
 ---
 
-## Python Formatting
-
-- Follow **PEP 8** strictly — enforced via `black` formatter
-- Use **type hints** on all function signatures
-- Max function length: **50 lines** — split if longer
-- Docstrings: **Google style** for all public functions and classes
-
-```python
-# Correct
-def calculate_discount(price: float, rate: float) -> float:
-    """Calculate the discounted price.
-
-    Args:
-        price: Original price in USD.
-        rate: Discount rate as a decimal (e.g., 0.2 for 20%).
-
-    Returns:
-        The discounted price.
-    """
-    return price * (1 - rate)
-```
-
----
-
 ## CSS / Tailwind Formatting
 
 - Use **Tailwind utility classes** — no custom CSS unless absolutely unavoidable
