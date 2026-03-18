@@ -1,4 +1,5 @@
 import { useTheme } from '@/hooks/useTheme';
+import { cn } from '@/lib/utils';
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -8,8 +9,10 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="flex h-8 w-8 items-center justify-center rounded-full
-        text-white transition-colors hover:text-brand-cream"
+      className={cn(
+        'flex h-8 w-8 items-center justify-center rounded-full',
+        'text-white transition-colors hover:text-brand-cream',
+      )}
     >
       {isDark ? (
         <svg

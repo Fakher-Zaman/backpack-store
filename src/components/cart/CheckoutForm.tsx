@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 import { useCart } from '@/hooks/useCart';
 import { usePayment } from '@/hooks/usePayment';
 import type { PaymentResult } from '@/types/payment.types';
 
-interface CheckoutFormProps {
+type CheckoutFormProps = {
   onBack: () => void;
   onSuccess: (result: PaymentResult) => void;
-}
+};
 
 const CURRENCIES = ['USD', 'EUR', 'GBP'] as const;
 const CURRENCY_SYMBOLS: Record<string, string> = {
@@ -41,16 +42,34 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
     });
   }
 
+  const inputClassName = cn(
+    'w-full rounded-lg border px-3 py-2.5 text-sm transition-colors',
+    'border-gray-200 bg-white text-gray-900',
+    'placeholder:text-gray-400 focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green',
+    'disabled:bg-gray-50 disabled:text-gray-400',
+    'dark:border-brand-dark-border dark:bg-brand-dark-surface dark:text-gray-100',
+    'dark:placeholder:text-gray-500 dark:disabled:bg-brand-dark-bg',
+  );
+
   return (
     <form onSubmit={handleSubmit} className="flex h-full flex-col">
-      <div className="flex items-center gap-3 border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
+      <div
+        className={cn(
+          'flex items-center gap-3 border-b px-6 py-4',
+          'border-gray-200 dark:border-brand-dark-border',
+        )}
+      >
         <button
           type="button"
           onClick={onBack}
           disabled={isProcessing}
           aria-label="Back to cart"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 dark:text-gray-400
-            transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-gray-800 dark:hover:text-gray-200 disabled:opacity-40"
+          className={cn(
+            'flex h-8 w-8 items-center justify-center rounded-full',
+            'text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800',
+            'disabled:opacity-40',
+            'dark:text-gray-400 dark:hover:bg-brand-dark-border dark:hover:text-gray-200',
+          )}
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -74,11 +93,7 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             onChange={e => setName(e.target.value)}
             disabled={isProcessing}
             placeholder="John Doe"
-            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
-              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
-              transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500
-              focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green
-              disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
+            className={inputClassName}
           />
         </div>
 
@@ -94,11 +109,7 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
             onChange={e => setEmail(e.target.value)}
             disabled={isProcessing}
             placeholder="john@example.com"
-            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
-              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
-              transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500
-              focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green
-              disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
+            className={inputClassName}
           />
         </div>
 
@@ -109,12 +120,21 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
           <select
             id="checkout-currency"
             value={currency}
-            onChange={e => setCurrency(e.target.value as typeof CURRENCIES[number])}
+            onChange={e => {
+              const val = e.target.value;
+              if (CURRENCIES.includes(val as typeof CURRENCIES[number])) {
+                setCurrency(val as typeof CURRENCIES[number]);
+              }
+            }}
             disabled={isProcessing}
-            className="w-full rounded-lg border border-gray-200 dark:border-brand-dark-border px-3 py-2.5 text-sm
-              bg-white dark:bg-brand-dark-surface text-gray-900 dark:text-gray-100
-              transition-colors focus:border-brand-green focus:outline-none focus:ring-1
-              focus:ring-brand-green disabled:bg-gray-50 dark:disabled:bg-brand-dark-bg disabled:text-gray-400"
+            className={cn(
+              'w-full rounded-lg border px-3 py-2.5 text-sm transition-colors',
+              'border-gray-200 bg-white text-gray-900',
+              'focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green',
+              'disabled:bg-gray-50 disabled:text-gray-400',
+              'dark:border-brand-dark-border dark:bg-brand-dark-surface dark:text-gray-100',
+              'dark:disabled:bg-brand-dark-bg',
+            )}
           >
             {CURRENCIES.map(c => (
               <option key={c} value={c}>{c} ({CURRENCY_SYMBOLS[c]})</option>
@@ -125,14 +145,18 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
         {error && (
           <div
             role="alert"
-            className="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-700 dark:text-red-400"
+            className={cn(
+              'rounded-lg border px-4 py-3 text-sm',
+              'border-red-200 bg-red-50 text-red-700',
+              'dark:border-red-800 dark:bg-red-900/20 dark:text-red-400',
+            )}
           >
             {error}
           </div>
         )}
       </div>
 
-      <div className="border-t border-gray-200 dark:border-brand-dark-border px-6 py-4">
+      <div className="border-t border-gray-200 px-6 py-4 dark:border-brand-dark-border">
         <div className="mb-4 flex items-center justify-between">
           <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
           <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
@@ -142,9 +166,11 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
         <button
           type="submit"
           disabled={!canSubmit || isProcessing}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-green
-            py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-green-dark
-            disabled:cursor-not-allowed disabled:opacity-50"
+          className={cn(
+            'flex w-full items-center justify-center gap-2 rounded-lg bg-brand-green',
+            'py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-green-dark',
+            'disabled:cursor-not-allowed disabled:opacity-50',
+          )}
         >
           {isProcessing ? (
             <>

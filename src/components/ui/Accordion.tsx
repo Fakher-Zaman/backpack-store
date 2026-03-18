@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
-interface AccordionItem {
+type AccordionItem = {
   id: number;
   question: string;
   answer: string;
-}
+};
 
-interface AccordionProps {
+type AccordionProps = {
   items: AccordionItem[];
-}
+};
 
 export default function Accordion({ items }: AccordionProps) {
   const [openId, setOpenId] = useState<number | null>(null);
@@ -28,16 +29,20 @@ export default function Accordion({ items }: AccordionProps) {
             <button
               onClick={() => toggle(item.id)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between py-5 text-left
-                text-sm font-semibold text-gray-900 transition-colors
-                hover:text-brand-green-dark dark:text-gray-100
-                dark:hover:text-brand-green-light"
+              className={cn(
+                'flex w-full items-center justify-between py-5 text-left',
+                'text-sm font-semibold text-gray-900 transition-colors',
+                'hover:text-brand-green-dark dark:text-gray-100',
+                'dark:hover:text-brand-green-light',
+              )}
             >
               {item.question}
               <svg
-                className={`h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200 dark:text-gray-500 ${
-                  isOpen ? 'rotate-180' : ''
-                }`}
+                className={cn(
+                  'h-5 w-5 shrink-0 text-gray-400 transition-transform duration-200',
+                  'dark:text-gray-500',
+                  isOpen && 'rotate-180',
+                )}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

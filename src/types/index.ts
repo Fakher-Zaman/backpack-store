@@ -1,10 +1,10 @@
-export interface Collection {
+export type Collection = {
   id: number;
   title: string;
   image: string;
-}
+};
 
-export interface Product {
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -14,36 +14,36 @@ export interface Product {
   colors?: string[];
   category?: string;
   description?: string;
-}
+};
 
-export interface Review {
+export type Review = {
   id: string;
   productId: number;
   author: string;
   rating: number;
   comment: string;
   date: string;
-}
+};
 
-export interface BlogPost {
+export type BlogPost = {
   id: number;
   title: string;
   excerpt: string;
   image: string;
   author: string;
   date: string;
-}
+};
 
-export interface FaqItem {
+export type FaqItem = {
   id: number;
   question: string;
   answer: string;
-}
+};
 
-export interface TeamMember {
+export type TeamMember = {
   id: number;
   name: string;
   role: string;
   image: string;
   bio: string;
-}
+};

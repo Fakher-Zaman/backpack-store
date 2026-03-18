@@ -1,7 +1,8 @@
 import { brandStory, mission, values, teamMembers } from '@/data/about';
 import AnimatedPage from '@/components/ui/AnimatedPage';
+import type { ReactNode } from 'react';
 
-export default function AboutPage() {
+export default function AboutPage(): ReactNode {
   return (
     <AnimatedPage>
       <div className="pt-24">

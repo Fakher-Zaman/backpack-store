@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 import AnimatedPage from '@/components/ui/AnimatedPage';
+import type { ReactNode } from 'react';
 
-export default function NotFoundPage() {
+export default function NotFoundPage(): ReactNode {
   return (
     <AnimatedPage>
       <div className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
@@ -11,9 +13,11 @@ export default function NotFoundPage() {
         </p>
         <Link
           to="/"
-          className="mt-6 rounded-full bg-brand-green-dark px-8 py-3 text-sm
-            font-semibold uppercase tracking-wider text-white transition-colors
-            hover:bg-brand-green"
+          className={cn(
+            'mt-6 rounded-full bg-brand-green-dark px-8 py-3 text-sm',
+            'font-semibold uppercase tracking-wider text-white transition-colors',
+            'hover:bg-brand-green',
+          )}
         >
           Back to Home
         </Link>

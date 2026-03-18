@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import type { Product } from '@/types';
 import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
@@ -42,12 +43,16 @@ export default function ProductCard({ product }: ProductCardProps) {
               src={product.image}
               alt={product.name}
               loading="lazy"
-              className="h-56 w-full object-cover transition-transform duration-500
-                group-hover:scale-105 motion-reduce:transition-none"
+              className={cn(
+                'h-56 w-full object-cover transition-transform duration-500',
+                'group-hover:scale-105 motion-reduce:transition-none',
+              )}
             />
             <div
-              className="absolute right-2 top-2 opacity-0 transition-opacity
-                group-hover:opacity-100 focus-within:opacity-100"
+              className={cn(
+                'absolute right-2 top-2 opacity-0 transition-opacity',
+                'group-hover:opacity-100 focus-within:opacity-100',
+              )}
               onClick={e => e.preventDefault()}
             >
               <WishlistButton productId={product.id} />
@@ -57,9 +62,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
         {product.colors && (
           <div className="mt-1 flex items-center gap-1.5" role="list" aria-label="Available colors">
-            {product.colors.map((color, i) => (
+            {product.colors.map(color => (
               <span
-                key={i}
+                key={color}
                 role="listitem"
                 aria-label={COLOR_NAMES[color] ?? color}
                 className="h-2.5 w-2.5 rounded-full border border-gray-200 dark:border-brand-dark-border"

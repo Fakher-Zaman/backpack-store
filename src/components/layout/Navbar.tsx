@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
@@ -43,7 +44,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`${isHome ? 'absolute' : 'fixed bg-brand-green-dark'} top-0 z-50 w-full`}
+        className={cn(
+          'top-0 z-50 w-full',
+          isHome ? 'absolute' : 'fixed bg-brand-green-dark',
+        )}
         aria-label="Main navigation"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
@@ -56,10 +60,12 @@ export default function Navbar() {
               <li key={link.label}>
                 <Link
                   to={link.to}
-                  className="text-xs font-medium tracking-wider text-white/90
-                    transition-colors hover:text-white focus:outline-none
-                    focus:ring-2 focus:ring-brand-cream focus:ring-offset-2
-                    focus:ring-offset-brand-green-dark rounded"
+                  className={cn(
+                    'text-xs font-medium tracking-wider text-white/90',
+                    'transition-colors hover:text-white focus:outline-none',
+                    'focus:ring-2 focus:ring-brand-cream focus:ring-offset-2',
+                    'focus:ring-offset-brand-green-dark rounded',
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -103,9 +109,11 @@ export default function Navbar() {
               </svg>
               {itemCount > 0 && (
                 <span
-                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4
-                    items-center justify-center rounded-full bg-red-500
-                    text-[10px] font-bold text-white"
+                  className={cn(
+                    'absolute -right-1.5 -top-1.5 flex h-4 w-4',
+                    'items-center justify-center rounded-full bg-red-500',
+                    'text-[10px] font-bold text-white',
+                  )}
                 >
                   {itemCount}
                 </span>
@@ -137,9 +145,11 @@ export default function Navbar() {
               </svg>
               {count > 0 && (
                 <span
-                  className="absolute -right-1.5 -top-1.5 flex h-4 w-4
-                    items-center justify-center rounded-full bg-red-500
-                    text-[10px] font-bold text-white"
+                  className={cn(
+                    'absolute -right-1.5 -top-1.5 flex h-4 w-4',
+                    'items-center justify-center rounded-full bg-red-500',
+                    'text-[10px] font-bold text-white',
+                  )}
                 >
                   {count}
                 </span>
@@ -151,10 +161,12 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="hidden rounded-full border border-white/30 px-5 py-2
-                  text-xs font-medium text-white transition-colors
-                  hover:bg-white hover:text-brand-green-dark focus:outline-none
-                  focus:ring-2 focus:ring-brand-cream md:block"
+                className={cn(
+                  'hidden rounded-full border border-white/30 px-5 py-2',
+                  'text-xs font-medium text-white transition-colors',
+                  'hover:bg-white hover:text-brand-green-dark focus:outline-none',
+                  'focus:ring-2 focus:ring-brand-cream md:block',
+                )}
               >
                 LOG IN
               </button>

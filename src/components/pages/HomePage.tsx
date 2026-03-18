@@ -8,8 +8,9 @@ import ProductGrid from '@/components/products/ProductGrid';
 import StoryBanner from '@/components/banners/StoryBanner';
 import BlogSection from '@/components/blog/BlogSection';
 import PromoBanner from '@/components/banners/PromoBanner';
+import type { ReactNode } from 'react';
 
-export default function HomePage() {
+export default function HomePage(): ReactNode {
   const { hash } = useLocation();
 
   useEffect(() => {

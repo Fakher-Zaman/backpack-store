@@ -1,8 +1,9 @@
 import { faqItems } from '@/data/faq';
 import Accordion from '@/components/ui/Accordion';
 import AnimatedPage from '@/components/ui/AnimatedPage';
+import type { ReactNode } from 'react';
 
-export default function FaqPage() {
+export default function FaqPage(): ReactNode {
   return (
     <AnimatedPage>
       <div className="pt-24">

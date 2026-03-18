@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
+import { cn } from '@/lib/utils';
 import { useWishlist } from '@/hooks/useWishlist';
 import { products } from '@/data/products';
 
-interface WishlistDrawerProps {
+type WishlistDrawerProps = {
   open: boolean;
   onClose: () => void;
-}
+};
 
 export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
   const { items, toggle } = useWishlist();
@@ -13,7 +14,6 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
 
   const wishlisted = products.filter(p => items.includes(p.id));
 
-  // Close on Escape
   useEffect(() => {
     if (!open) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -23,7 +23,6 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
     return () => document.removeEventListener('keydown', handleKey);
   }, [open, onClose]);
 
-  // Trap focus inside drawer when open
   useEffect(() => {
     if (open) {
       drawerRef.current?.focus();
@@ -48,19 +47,29 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
         aria-label="Wishlist"
         aria-modal="true"
         tabIndex={-1}
-        className="fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col bg-white dark:bg-brand-dark-surface shadow-xl outline-none"
+        className={cn(
+          'fixed right-0 top-0 z-[70] flex h-full w-full max-w-sm flex-col',
+          'bg-white shadow-xl outline-none dark:bg-brand-dark-surface',
+        )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 dark:border-brand-dark-border px-6 py-4">
+        <div
+          className={cn(
+            'flex items-center justify-between border-b px-6 py-4',
+            'border-gray-200 dark:border-brand-dark-border',
+          )}
+        >
           <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-100">
             Wishlist ({wishlisted.length})
           </h2>
           <button
             onClick={onClose}
             aria-label="Close wishlist"
-            className="flex h-8 w-8 items-center justify-center rounded-full
-              text-gray-500 dark:text-gray-400 transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border
-              hover:text-gray-800 dark:hover:text-gray-200"
+            className={cn(
+              'flex h-8 w-8 items-center justify-center rounded-full',
+              'text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800',
+              'dark:text-gray-400 dark:hover:bg-brand-dark-border dark:hover:text-gray-200',
+            )}
           >
             <svg
               className="h-5 w-5"
@@ -114,16 +123,20 @@ export default function WishlistDrawer({ open, onClose }: WishlistDrawerProps) {
                     alt={product.name}
                     className="h-16 w-16 rounded-lg object-cover"
                   />
-                  <div className="flex-1 min-w-0">
-                    <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">{product.name}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">
+                      {product.name}
+                    </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">${product.price}</p>
                   </div>
                   <button
                     onClick={() => toggle(product.id)}
                     aria-label={`Remove ${product.name} from wishlist`}
-                    className="flex h-7 w-7 shrink-0 items-center justify-center
-                      rounded-full text-gray-400 dark:text-gray-500 transition-colors
-                      hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-red-500 dark:hover:text-red-400"
+                    className={cn(
+                      'flex h-7 w-7 shrink-0 items-center justify-center rounded-full',
+                      'text-gray-400 transition-colors hover:bg-gray-100 hover:text-red-500',
+                      'dark:text-gray-500 dark:hover:bg-brand-dark-border dark:hover:text-red-400',
+                    )}
                   >
                     <svg
                       className="h-4 w-4"

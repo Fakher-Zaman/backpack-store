@@ -4,10 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 transition-colors;
-  }
-  .dark body {
-    @apply bg-[#1a1a1a] text-gray-100;
+    @apply bg-white text-gray-900 transition-colors dark:bg-[#1a1a1a] dark:text-gray-100;
   }
 }
 

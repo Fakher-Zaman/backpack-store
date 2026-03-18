@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/hooks/useTheme';
 import { WishlistProvider } from '@/hooks/useWishlist';
 import { CartProvider } from '@/hooks/useCart';
@@ -43,11 +44,11 @@ export default function App() {
       <ScrollToTop />
       <a
         href="#main-content"
-        className={[
+        className={cn(
           'sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4',
           'focus:z-[100] focus:rounded-md focus:bg-brand-green-dark',
           'focus:px-4 focus:py-2 focus:text-white',
-        ].join(' ')}
+        )}
       >
         Skip to main content
       </a>

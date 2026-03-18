@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { cn } from '@/lib/utils';
 import { contactFormSchema } from '@/types/contact.types';
 import { contactInfo } from '@/data/contact';
 import AnimatedPage from '@/components/ui/AnimatedPage';
+import type { ReactNode } from 'react';
 import type { ContactFormInput } from '@/types/contact.types';
 
-export default function ContactPage() {
+export default function ContactPage(): ReactNode {
   const [submitted, setSubmitted] = useState(false);
 
   const {
@@ -24,11 +26,12 @@ export default function ContactPage() {
     reset();
   };
 
-  const inputClasses = `w-full rounded-lg border border-gray-300 px-4 py-3 text-sm
-    outline-none focus:border-brand-green-dark focus:ring-1
-    focus:ring-brand-green-dark dark:border-brand-dark-border
-    dark:bg-brand-dark-surface dark:text-gray-100
-    dark:focus:border-brand-green-light dark:focus:ring-brand-green-light`;
+  const inputClasses = cn(
+    'w-full rounded-lg border border-gray-300 px-4 py-3 text-sm',
+    'outline-none focus:border-brand-green-dark focus:ring-1 focus:ring-brand-green-dark',
+    'dark:border-brand-dark-border dark:bg-brand-dark-surface dark:text-gray-100',
+    'dark:focus:border-brand-green-light dark:focus:ring-brand-green-light',
+  );
 
   return (
     <AnimatedPage>
@@ -109,9 +112,11 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="rounded-full bg-brand-green-dark px-8 py-3 text-sm
-                      font-semibold uppercase tracking-wider text-white transition-colors
-                      hover:bg-brand-green disabled:opacity-50"
+                    className={cn(
+                      'rounded-full bg-brand-green-dark px-8 py-3 text-sm',
+                      'font-semibold uppercase tracking-wider text-white transition-colors',
+                      'hover:bg-brand-green disabled:opacity-50',
+                    )}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>

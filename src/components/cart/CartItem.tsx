@@ -1,10 +1,11 @@
+import { cn } from '@/lib/utils';
 import { products } from '@/data/products';
 import { useCart } from '@/hooks/useCart';
 
-interface CartItemProps {
+type CartItemProps = {
   productId: number;
   quantity: number;
-}
+};
 
 export default function CartItem({ productId, quantity }: CartItemProps) {
   const { updateQuantity, removeItem } = useCart();
@@ -21,17 +22,22 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
         alt={product.name}
         className="h-16 w-16 rounded-lg object-cover"
       />
-      <div className="flex-1 min-w-0">
-        <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">{product.name}</p>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">
+          {product.name}
+        </p>
         <p className="text-sm text-gray-500 dark:text-gray-400">${product.price}</p>
         <div className="mt-1 flex items-center gap-2">
           <button
             onClick={() => updateQuantity(productId, quantity - 1)}
             disabled={quantity <= 1}
             aria-label={`Decrease quantity of ${product.name}`}
-            className="flex h-6 w-6 items-center justify-center rounded
-              border border-gray-200 dark:border-brand-dark-border text-xs text-gray-600 dark:text-gray-400
-              transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border disabled:opacity-40"
+            className={cn(
+              'flex h-6 w-6 items-center justify-center rounded',
+              'border text-xs transition-colors disabled:opacity-40',
+              'border-gray-200 text-gray-600 hover:bg-gray-100',
+              'dark:border-brand-dark-border dark:text-gray-400 dark:hover:bg-brand-dark-border',
+            )}
           >
             -
           </button>
@@ -39,9 +45,12 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
           <button
             onClick={() => updateQuantity(productId, quantity + 1)}
             aria-label={`Increase quantity of ${product.name}`}
-            className="flex h-6 w-6 items-center justify-center rounded
-              border border-gray-200 dark:border-brand-dark-border text-xs text-gray-600 dark:text-gray-400
-              transition-colors hover:bg-gray-100 dark:hover:bg-brand-dark-border"
+            className={cn(
+              'flex h-6 w-6 items-center justify-center rounded',
+              'border text-xs transition-colors',
+              'border-gray-200 text-gray-600 hover:bg-gray-100',
+              'dark:border-brand-dark-border dark:text-gray-400 dark:hover:bg-brand-dark-border',
+            )}
           >
             +
           </button>
@@ -52,9 +61,11 @@ export default function CartItem({ productId, quantity }: CartItemProps) {
         <button
           onClick={() => removeItem(productId)}
           aria-label={`Remove ${product.name} from cart`}
-          className="flex h-7 w-7 shrink-0 items-center justify-center
-            rounded-full text-gray-400 dark:text-gray-500 transition-colors
-            hover:bg-gray-100 dark:hover:bg-brand-dark-border hover:text-red-500 dark:hover:text-red-400"
+          className={cn(
+            'flex h-7 w-7 shrink-0 items-center justify-center rounded-full',
+            'text-gray-400 transition-colors hover:bg-gray-100 hover:text-red-500',
+            'dark:text-gray-500 dark:hover:bg-brand-dark-border dark:hover:text-red-400',
+          )}
         >
           <svg
             className="h-4 w-4"

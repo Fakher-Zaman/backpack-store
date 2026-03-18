@@ -31,7 +31,7 @@ function getInitialTheme(): Theme {
   return 'light';
 }
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }): ReactNode {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {

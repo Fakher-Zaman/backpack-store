@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 import { products } from '@/data/products';
 import { useReviews } from '@/hooks/useReviews';
 import { useCart } from '@/hooks/useCart';
@@ -6,6 +7,7 @@ import StarRating from '@/components/ui/StarRating';
 import WishlistButton from '@/components/ui/WishlistButton';
 import ProductReviewSection from '@/components/products/ProductReviewSection';
 import AnimatedPage from '@/components/ui/AnimatedPage';
+import type { ReactNode } from 'react';
 
 const COLOR_NAMES: Record<string, string> = {
   '#2C2C2C': 'Charcoal',
@@ -15,9 +17,9 @@ const COLOR_NAMES: Record<string, string> = {
   '#E8DFD0': 'Cream',
 };
 
-export default function ProductDetailPage() {
+export default function ProductDetailPage(): ReactNode {
   const { id } = useParams<{ id: string }>();
-  const product = products.find(p => p.id === Number(id));
+  const product = id ? products.find(p => p.id === Number(id)) : undefined;
   const { getAverageRating, getProductReviews } = useReviews();
   const { addItem } = useCart();
 
@@ -66,7 +68,13 @@ export default function ProductDetailPage() {
           {/* Details */}
           <div className="flex flex-col gap-6">
             {product.category && (
-              <span className="w-fit rounded-full bg-brand-green-dark/10 px-3 py-1 text-xs font-medium text-brand-green-dark dark:bg-brand-green-light/10 dark:text-brand-green-light">
+              <span
+                className={cn(
+                  'w-fit rounded-full px-3 py-1 text-xs font-medium',
+                  'bg-brand-green-dark/10 text-brand-green-dark',
+                  'dark:bg-brand-green-light/10 dark:text-brand-green-light',
+                )}
+              >
                 {product.category}
               </span>
             )}
@@ -98,9 +106,9 @@ export default function ProductDetailPage() {
               <div>
                 <h3 className="mb-2 text-sm font-semibold dark:text-gray-200">Colors</h3>
                 <div className="flex gap-3" role="list" aria-label="Available colors">
-                  {product.colors.map((color, i) => (
+                  {product.colors.map(color => (
                     <span
-                      key={i}
+                      key={color}
                       role="listitem"
                       aria-label={COLOR_NAMES[color] ?? color}
                       className="h-8 w-8 rounded-full border-2 border-gray-200 dark:border-brand-dark-border"
@@ -113,11 +121,13 @@ export default function ProductDetailPage() {
 
             <button
               onClick={() => addItem(product.id)}
-              className="mt-2 w-full rounded-full bg-brand-green-dark py-4 text-sm
-                font-semibold uppercase tracking-wider text-white transition-colors
-                hover:bg-brand-green focus:outline-none focus:ring-2
-                focus:ring-brand-green focus:ring-offset-2
-                dark:focus:ring-offset-brand-dark-bg"
+              className={cn(
+                'mt-2 w-full rounded-full bg-brand-green-dark py-4 text-sm',
+                'font-semibold uppercase tracking-wider text-white transition-colors',
+                'hover:bg-brand-green focus:outline-none focus:ring-2',
+                'focus:ring-brand-green focus:ring-offset-2',
+                'dark:focus:ring-offset-brand-dark-bg',
+              )}
             >
               Add to Cart
             </button>
