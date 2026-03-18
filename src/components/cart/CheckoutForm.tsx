@@ -4,9 +4,15 @@ import { useCart } from '@/hooks/useCart';
 import { usePayment } from '@/hooks/usePayment';
 import type { PaymentResult } from '@/types/payment.types';
 
+export type CheckoutCustomer = {
+  name: string;
+  email: string;
+  currency: 'USD' | 'EUR' | 'GBP';
+};
+
 type CheckoutFormProps = {
   onBack: () => void;
-  onSuccess: (result: PaymentResult) => void;
+  onSuccess: (result: PaymentResult, customer: CheckoutCustomer) => void;
 };
 
 const CURRENCIES = ['USD', 'EUR', 'GBP'] as const;
@@ -29,9 +35,9 @@ export default function CheckoutForm({ onBack, onSuccess }: CheckoutFormProps) {
 
   useEffect(() => {
     if (status === 'success' && result) {
-      onSuccess(result);
+      onSuccess(result, { name: name.trim(), email: email.trim(), currency });
     }
-  }, [status, result, onSuccess]);
+  }, [status, result, onSuccess, name, email, currency]);
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();

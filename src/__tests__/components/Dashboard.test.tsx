@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AuthProvider } from '@/hooks/useAuth';
 import { WishlistProvider } from '@/hooks/useWishlist';
+import { OrdersProvider } from '@/hooks/useOrders';
 import Dashboard from '@/components/auth/Dashboard';
 
 vi.mock('@/lib/auth', () => ({
@@ -21,7 +22,9 @@ function renderDashboard(isOpen: boolean, onClose = vi.fn()) {
     ...render(
       <AuthProvider>
         <WishlistProvider>
-          <Dashboard isOpen={isOpen} onClose={onClose} />
+          <OrdersProvider>
+            <Dashboard isOpen={isOpen} onClose={onClose} />
+          </OrdersProvider>
         </WishlistProvider>
       </AuthProvider>,
     ),

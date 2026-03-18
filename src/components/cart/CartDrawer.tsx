@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/hooks/useCart';
+import { useOrders } from '@/hooks/useOrders';
+import { products } from '@/data/products';
 import CartItemRow from './CartItem';
 import CheckoutForm from './CheckoutForm';
 import type { PaymentResult } from '@/types/payment.types';
+import type { Order } from '@/types/order.types';
 
 type DrawerView = 'cart' | 'checkout' | 'success';
 
@@ -14,6 +17,7 @@ type CartDrawerProps = {
 
 export default function CartDrawer({ open, onClose }: CartDrawerProps) {
   const { items, total, clearCart } = useCart();
+  const { addOrder } = useOrders();
   const drawerRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<DrawerView>('cart');
   const [paymentResult, setPaymentResult] = useState<PaymentResult | null>(null);
@@ -40,11 +44,39 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
     }
   }, [open]);
 
-  const handlePaymentSuccess = useCallback((result: PaymentResult) => {
-    setPaymentResult(result);
-    setView('success');
-    clearCart();
-  }, [clearCart]);
+  const handlePaymentSuccess = useCallback(
+    (result: PaymentResult, customer: { name: string; email: string; currency: 'USD' | 'EUR' | 'GBP' }) => {
+      const orderItems = items.map(item => {
+        const product = products.find(p => p.id === item.productId);
+        const price = product?.price ?? 0;
+        return {
+          productId: item.productId,
+          name: product?.name ?? 'Unknown Product',
+          image: product?.image ?? '',
+          price,
+          quantity: item.quantity,
+          lineTotal: price * item.quantity,
+        };
+      });
+
+      const order: Order = {
+        orderId: result.id,
+        customerName: customer.name,
+        customerEmail: customer.email,
+        items: orderItems,
+        total: result.amount,
+        currency: customer.currency,
+        status: result.status === 'success' ? 'completed' : 'failed',
+        createdAt: new Date().toISOString(),
+      };
+
+      addOrder(order);
+      setPaymentResult(result);
+      setView('success');
+      clearCart();
+    },
+    [items, addOrder, clearCart],
+  );
 
   if (!open) return null;
 

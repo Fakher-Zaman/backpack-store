@@ -89,13 +89,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-display text-lg font-semibold text-brand-charcoal">
+          <h2 className="font-display text-lg font-semibold text-brand-charcoal dark:text-gray-100">
             Log In
           </h2>
           <button
             onClick={onClose}
             aria-label="Close login"
-            className="rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            className="rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -104,14 +104,14 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         </div>
 
         {errors.form && (
-          <div role="alert" className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div role="alert" className="mb-4 rounded-lg bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-700 dark:text-red-300">
             {errors.form}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="login-email" className="mb-1 block text-sm font-medium text-brand-charcoal">
+            <label htmlFor="login-email" className="mb-1 block text-sm font-medium text-brand-charcoal dark:text-gray-200">
               Email
             </label>
             <input
@@ -119,19 +119,19 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-brand-charcoal
-                placeholder:text-gray-400 focus:border-brand-green focus:outline-none focus:ring-1
-                focus:ring-brand-green"
+              className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2.5 text-sm text-brand-charcoal dark:text-gray-100
+                placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-brand-green focus:outline-none focus:ring-1
+                focus:ring-brand-green dark:bg-gray-800"
               placeholder="you@example.com"
               autoComplete="email"
             />
             {errors.email && (
-              <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+              <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.email}</p>
             )}
           </div>
 
           <div>
-            <label htmlFor="login-password" className="mb-1 block text-sm font-medium text-brand-charcoal">
+            <label htmlFor="login-password" className="mb-1 block text-sm font-medium text-brand-charcoal dark:text-gray-200">
               Password
             </label>
             <input
@@ -139,14 +139,14 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-brand-charcoal
-                placeholder:text-gray-400 focus:border-brand-green focus:outline-none focus:ring-1
-                focus:ring-brand-green"
+              className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2.5 text-sm text-brand-charcoal dark:text-gray-100
+                placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-brand-green focus:outline-none focus:ring-1
+                focus:ring-brand-green dark:bg-gray-800"
               placeholder="Enter your password"
               autoComplete="current-password"
             />
             {errors.password && (
-              <p className="mt-1 text-xs text-red-600">{errors.password}</p>
+              <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.password}</p>
             )}
           </div>
 

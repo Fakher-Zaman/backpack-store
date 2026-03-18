@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/hooks/useTheme';
 import { WishlistProvider } from '@/hooks/useWishlist';
 import { CartProvider } from '@/hooks/useCart';
 import { ReviewsProvider } from '@/hooks/useReviews';
+import { OrdersProvider } from '@/hooks/useOrders';
 import { AuthProvider } from '@/hooks/useAuth';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -40,6 +41,7 @@ export default function App() {
     <AuthProvider>
     <WishlistProvider>
     <CartProvider>
+    <OrdersProvider>
     <ReviewsProvider>
       <ScrollToTop />
       <a
@@ -58,6 +60,7 @@ export default function App() {
       </main>
       <Footer />
     </ReviewsProvider>
+    </OrdersProvider>
     </CartProvider>
     </WishlistProvider>
     </AuthProvider>
