@@ -1,13 +1,7 @@
 import { cn } from '@/lib/utils';
-import type { ProductFilters } from '@/hooks/useProductFilter';
+import { COLOR_NAMES } from '@/data/colors';
 
-const COLOR_NAMES: Record<string, string> = {
-  '#2C2C2C': 'Charcoal',
-  '#5C4033': 'Brown',
-  '#1A3A25': 'Forest Green',
-  '#4A5568': 'Slate Gray',
-  '#E8DFD0': 'Cream',
-};
+import type { ProductFilters } from '@/hooks/useProductFilter';
 
 type ProductFilterProps = {
   filters: ProductFilters;

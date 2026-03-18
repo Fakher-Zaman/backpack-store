@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { getProductImage } from '@/lib/productUtils';
+import { COLOR_NAMES } from '@/data/colors';
 import type { Product } from '@/types';
 import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
@@ -11,14 +13,6 @@ import ReviewModal from '../ui/ReviewModal';
 import ProductReviewSection from './ProductReviewSection';
 import QuickViewModal from './QuickViewModal';
 
-const COLOR_NAMES: Record<string, string> = {
-  '#2C2C2C': 'Charcoal',
-  '#5C4033': 'Brown',
-  '#1A3A25': 'Forest Green',
-  '#4A5568': 'Slate Gray',
-  '#E8DFD0': 'Cream',
-};
-
 interface ProductCardProps {
   product: Product;
 }
@@ -26,10 +20,14 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [showReviews, setShowReviews] = useState(false);
   const [showQuickView, setShowQuickView] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string | null>(
+    product.colors?.[0] ?? null,
+  );
   const { getAverageRating, getProductReviews } = useReviews();
   const avgRating = getAverageRating(product.id);
   const reviewCount = getProductReviews(product.id).length;
   const shouldReduce = useReducedMotion();
+  const currentImage = getProductImage(product, selectedColor);
 
   return (
     <>
@@ -42,8 +40,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Link to={`/products/${product.id}`} className="block">
           <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-100 dark:bg-brand-dark-surface">
             <img
-              src={product.image}
-              alt={product.name}
+              src={currentImage}
+              alt={`${product.name}${selectedColor ? ` in ${COLOR_NAMES[selectedColor] ?? selectedColor}` : ''}`}
               loading="lazy"
               className={cn(
                 'h-56 w-full object-cover transition-transform duration-500',
@@ -86,13 +84,20 @@ export default function ProductCard({ product }: ProductCardProps) {
           <h3 className="text-sm font-semibold dark:text-gray-100">{product.name}</h3>
         </Link>
         {product.colors && (
-          <div className="mt-1 flex items-center gap-1.5" role="list" aria-label="Available colors">
+          <div className="mt-1 flex items-center gap-1.5" role="radiogroup" aria-label="Select color">
             {product.colors.map(color => (
-              <span
+              <button
                 key={color}
-                role="listitem"
+                role="radio"
+                aria-checked={selectedColor === color}
                 aria-label={COLOR_NAMES[color] ?? color}
-                className="h-2.5 w-2.5 rounded-full border border-gray-200 dark:border-brand-dark-border"
+                onClick={() => setSelectedColor(color)}
+                className={cn(
+                  'h-3 w-3 rounded-full border-2 transition-all',
+                  selectedColor === color
+                    ? 'border-brand-green scale-125 ring-1 ring-brand-green/30'
+                    : 'border-gray-200 hover:scale-110 dark:border-brand-dark-border',
+                )}
                 style={{ backgroundColor: color }}
               />
             ))}

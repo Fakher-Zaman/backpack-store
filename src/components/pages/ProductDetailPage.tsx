@@ -12,8 +12,6 @@ import ProductReviewSection from '@/components/products/ProductReviewSection';
 import AnimatedPage from '@/components/ui/AnimatedPage';
 import type { ReactNode } from 'react';
 
-
-
 export default function ProductDetailPage(): ReactNode {
   const { id } = useParams<{ id: string }>();
   const product = id ? products.find(p => p.id === Number(id)) : undefined;

@@ -114,7 +114,6 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
       >
         Submit Review
       </button>
-      </button>
     </form>
   );
 }

@@ -9,8 +9,6 @@ import { useReviews } from '@/hooks/useReviews';
 import StarRating from '../ui/StarRating';
 import WishlistButton from '../ui/WishlistButton';
 
-
-
 interface QuickViewModalProps {
   product: Product;
   isOpen: boolean;
