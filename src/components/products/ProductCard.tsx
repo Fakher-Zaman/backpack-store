@@ -9,6 +9,7 @@ import WishlistButton from '../ui/WishlistButton';
 import AddToCartButton from '../cart/AddToCartButton';
 import ReviewModal from '../ui/ReviewModal';
 import ProductReviewSection from './ProductReviewSection';
+import QuickViewModal from './QuickViewModal';
 
 const COLOR_NAMES: Record<string, string> = {
   '#2C2C2C': 'Charcoal',
@@ -24,6 +25,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [showReviews, setShowReviews] = useState(false);
+  const [showQuickView, setShowQuickView] = useState(false);
   const { getAverageRating, getProductReviews } = useReviews();
   const avgRating = getAverageRating(product.id);
   const reviewCount = getProductReviews(product.id).length;
@@ -57,6 +59,29 @@ export default function ProductCard({ product }: ProductCardProps) {
             >
               <WishlistButton productId={product.id} />
             </div>
+            <button
+              onClick={e => {
+                e.preventDefault();
+                setShowQuickView(true);
+              }}
+              aria-label={`Quick view ${product.name}`}
+              className={cn(
+                'absolute bottom-2 left-1/2 -translate-x-1/2',
+                'flex items-center gap-1.5 rounded-full px-3 py-1.5',
+                'bg-white/90 text-xs font-medium text-brand-charcoal shadow-sm backdrop-blur-sm',
+                'opacity-0 transition-all duration-200',
+                'group-hover:opacity-100 group-hover:translate-y-0',
+                'translate-y-2 hover:bg-white',
+                'dark:bg-brand-dark-surface/90 dark:text-gray-200 dark:hover:bg-brand-dark-surface',
+                'focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green',
+              )}
+            >
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Quick View
+            </button>
           </div>
           <h3 className="text-sm font-semibold dark:text-gray-100">{product.name}</h3>
         </Link>
@@ -98,6 +123,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       >
         <ProductReviewSection productId={product.id} />
       </ReviewModal>
+      <QuickViewModal
+        product={product}
+        isOpen={showQuickView}
+        onClose={() => setShowQuickView(false)}
+      />
     </>
   );
 }

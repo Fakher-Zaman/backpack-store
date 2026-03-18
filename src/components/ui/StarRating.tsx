@@ -8,7 +8,7 @@ export default function StarRating({ rating }: StarRatingProps) {
       {Array.from({ length: 5 }, (_, i) => (
         <svg
           key={i}
-          className={`h-3 w-3 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300'}`}
+          className={`h-3 w-3 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden="true"

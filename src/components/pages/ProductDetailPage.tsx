@@ -1,6 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { getProductImage } from '@/lib/productUtils';
 import { products } from '@/data/products';
+import { COLOR_NAMES } from '@/data/colors';
 import { useReviews } from '@/hooks/useReviews';
 import { useCart } from '@/hooks/useCart';
 import StarRating from '@/components/ui/StarRating';
@@ -9,19 +12,16 @@ import ProductReviewSection from '@/components/products/ProductReviewSection';
 import AnimatedPage from '@/components/ui/AnimatedPage';
 import type { ReactNode } from 'react';
 
-const COLOR_NAMES: Record<string, string> = {
-  '#2C2C2C': 'Charcoal',
-  '#5C4033': 'Brown',
-  '#1A3A25': 'Forest Green',
-  '#4A5568': 'Slate Gray',
-  '#E8DFD0': 'Cream',
-};
+
 
 export default function ProductDetailPage(): ReactNode {
   const { id } = useParams<{ id: string }>();
   const product = id ? products.find(p => p.id === Number(id)) : undefined;
   const { getAverageRating, getProductReviews } = useReviews();
   const { addItem } = useCart();
+  const [selectedColor, setSelectedColor] = useState<string | null>(
+    product?.colors?.[0] ?? null,
+  );
 
   if (!product) {
     return (
@@ -40,6 +40,9 @@ export default function ProductDetailPage(): ReactNode {
   const avgRating = getAverageRating(product.id);
   const reviewCount = getProductReviews(product.id).length;
 
+  // Get the current image based on selected color
+  const currentImage = getProductImage(product, selectedColor);
+
   return (
     <AnimatedPage>
       <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
@@ -56,8 +59,8 @@ export default function ProductDetailPage(): ReactNode {
           {/* Image */}
           <div className="relative overflow-hidden rounded-2xl bg-gray-100 dark:bg-brand-dark-surface">
             <img
-              src={product.image}
-              alt={product.name}
+              src={currentImage}
+              alt={`${product.name}${selectedColor ? ` in ${COLOR_NAMES[selectedColor] ?? selectedColor}` : ''}`}
               className="h-full w-full object-cover"
             />
             <div className="absolute right-4 top-4">
@@ -104,14 +107,24 @@ export default function ProductDetailPage(): ReactNode {
 
             {product.colors && (
               <div>
-                <h3 className="mb-2 text-sm font-semibold dark:text-gray-200">Colors</h3>
-                <div className="flex gap-3" role="list" aria-label="Available colors">
+                <h3 className="mb-2 text-sm font-semibold dark:text-gray-200">
+                  Color: {selectedColor ? (COLOR_NAMES[selectedColor] ?? selectedColor) : 'Select a color'}
+                </h3>
+                <div className="flex gap-3" role="radiogroup" aria-label="Select color">
                   {product.colors.map(color => (
-                    <span
+                    <button
                       key={color}
-                      role="listitem"
+                      role="radio"
+                      aria-checked={selectedColor === color}
                       aria-label={COLOR_NAMES[color] ?? color}
-                      className="h-8 w-8 rounded-full border-2 border-gray-200 dark:border-brand-dark-border"
+                      onClick={() => setSelectedColor(color)}
+                      className={cn(
+                        'h-8 w-8 rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-brand-green focus:ring-offset-2',
+                        selectedColor === color
+                          ? 'border-brand-green scale-110 ring-2 ring-brand-green/30'
+                          : 'border-gray-200 hover:scale-105 dark:border-brand-dark-border',
+                        'dark:focus:ring-offset-brand-dark-bg'
+                      )}
                       style={{ backgroundColor: color }}
                     />
                   ))}

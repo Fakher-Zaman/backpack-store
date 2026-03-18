@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { cn } from '@/lib/utils';
 
 interface ReviewModalProps {
   isOpen: boolean;
@@ -46,17 +47,24 @@ export default function ReviewModal({ isOpen, onClose, title, children }: Review
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white dark:bg-brand-dark-surface p-6 shadow-xl focus:outline-none"
+        className={cn(
+          'max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl p-6 shadow-xl focus:outline-none',
+          'bg-white dark:bg-brand-dark-surface'
+        )}
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-lg font-semibold text-brand-charcoal">
+          <h2 className="font-display text-lg font-semibold text-brand-charcoal dark:text-gray-100">
             {title}
           </h2>
           <button
             onClick={onClose}
             aria-label="Close reviews"
-            className="rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            className={cn(
+              'rounded-full p-1 transition-colors',
+              'text-gray-400 hover:bg-gray-100 hover:text-gray-600',
+              'dark:text-gray-500 dark:hover:bg-brand-dark-border dark:hover:text-gray-300'
+            )}
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

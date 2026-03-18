@@ -12,6 +12,7 @@ export type Product = {
   image: string;
   rating: number;
   colors?: string[];
+  colorImages?: Record<string, string>;
   category?: string;
   description?: string;
 };

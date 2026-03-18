@@ -11,6 +11,9 @@
       "env": {
         "SUPABASE_ACCESS_TOKEN": "<personal-access-token>"
       }
+    },
+    "Figma Dev Mode MCP": {
+      "url": "http://127.0.0.1:3845/mcp"
     }
   }
 }

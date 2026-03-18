@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useReviews } from '@/hooks/useReviews';
+import { cn } from '@/lib/utils';
 
 interface ReviewFormProps {
   productId: number;
@@ -23,11 +24,24 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
   const displayRating = hoveredRating || rating;
 
+  const inputClassName = cn(
+    'w-full rounded-lg border px-3 py-2 text-sm transition-colors',
+    'border-gray-200 bg-white text-gray-900',
+    'placeholder:text-gray-400 focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green',
+    'dark:border-brand-dark-border dark:bg-brand-dark-surface dark:text-gray-100',
+    'dark:placeholder:text-gray-500'
+  );
+
+  const labelClassName = cn(
+    'mb-1 block text-xs',
+    'text-gray-500 dark:text-gray-400'
+  );
+
   return (
-    <form onSubmit={handleSubmit} className="mb-6 space-y-3 border-b border-gray-100 pb-6">
-      <h3 className="text-sm font-semibold text-brand-charcoal">Write a Review</h3>
+    <form onSubmit={handleSubmit} className="mb-6 space-y-3 border-b border-gray-100 dark:border-brand-dark-border pb-6">
+      <h3 className="text-sm font-semibold text-brand-charcoal dark:text-gray-100">Write a Review</h3>
       <div>
-        <label htmlFor={`review-author-${productId}`} className="mb-1 block text-xs text-gray-500">
+        <label htmlFor={`review-author-${productId}`} className={labelClassName}>
           Name
         </label>
         <input
@@ -36,13 +50,12 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           value={author}
           onChange={e => setAuthor(e.target.value)}
           required
-          className="w-full rounded-lg border border-gray-200 px-3 py-2
-            text-sm focus:border-brand-green focus:outline-none
-            focus:ring-1 focus:ring-brand-green"
+          placeholder="Your name"
+          className={inputClassName}
         />
       </div>
       <div>
-        <span className="mb-1 block text-xs text-gray-500">Rating</span>
+        <span className={labelClassName}>Rating</span>
         <div className="flex gap-1" role="radiogroup" aria-label="Rating">
           {Array.from({ length: 5 }, (_, i) => {
             const starValue = i + 1;
@@ -76,7 +89,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
         </div>
       </div>
       <div>
-        <label htmlFor={`review-comment-${productId}`} className="mb-1 block text-xs text-gray-500">
+        <label htmlFor={`review-comment-${productId}`} className={labelClassName}>
           Review
         </label>
         <textarea
@@ -85,19 +98,22 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           onChange={e => setComment(e.target.value)}
           required
           rows={3}
-          className="w-full rounded-lg border border-gray-200 px-3 py-2
-            text-sm focus:border-brand-green focus:outline-none
-            focus:ring-1 focus:ring-brand-green"
+          placeholder="Share your thoughts about this product..."
+          className={inputClassName}
         />
       </div>
       <button
         type="submit"
         disabled={!author.trim() || rating === 0 || !comment.trim()}
-        className="rounded-lg bg-brand-green px-4 py-2 text-sm font-medium
-          text-white transition-colors hover:bg-brand-green-dark
-          disabled:cursor-not-allowed disabled:opacity-50"
+        className={cn(
+          'rounded-lg px-4 py-2 text-sm font-medium transition-colors',
+          'bg-brand-green text-white hover:bg-brand-green-dark',
+          'disabled:cursor-not-allowed disabled:opacity-50',
+          'dark:bg-brand-green dark:hover:bg-brand-green-dark'
+        )}
       >
         Submit Review
+      </button>
       </button>
     </form>
   );
